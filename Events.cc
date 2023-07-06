@@ -37,7 +37,7 @@
 #include <TH1.h>
 #include <TTreeReader.h>
 #include <TTreeReaderValue.h>
-#include "FastForest/include/fastforest.h"
+#include "../FastForest/include/fastforest.h"
 #include <TTreeReaderArray.h>
 #include <vector>
 #include <iostream>
