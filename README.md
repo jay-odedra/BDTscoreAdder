@@ -18,3 +18,4 @@ cd BDTscoreAdder
 g++ -fPIC -std=c++11 Events.cc -o addbdtscore.exe -lfastforest -I ../FastForest/include/ -L ../FastForest/build/ `root-config --glibs --cflags`
 ./addbdtscore.exe inputfiles.txt outputfilename outputfiledir
 ```
+XGBOOST MODELS SHOULD BE TRAINED USING OBJECTIVE = objective='binary:logitraw' AND SAVED USING booster.dump_model("model.txt")
