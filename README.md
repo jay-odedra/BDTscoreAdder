@@ -14,7 +14,7 @@ build it
 cd FastForest
 mkdir build
 cd build
-cmake ..
+cmake3 ..
 make
 cp -P src/libfastforest.so* .
 ```
