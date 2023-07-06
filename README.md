@@ -8,6 +8,9 @@ cmsenv
 install fastforest xgboost evaluator
 ```
 git clone git@github.com:guitargeek/FastForest.git
+```
+build it
+```
 cd FastForest
 mkdir build
 cd build
@@ -18,6 +21,7 @@ cp -P src/libfastforest.so* .
 add bdtscoreadder repo
 
 ```
+cd ${CMSSW_BASE}/src
 git clone git@github.com:jay-odedra/BDTscoreAdder.git
 cd BDTscoreAdder
 export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:${CMSSW_BASE}/src/FastForest/build/
