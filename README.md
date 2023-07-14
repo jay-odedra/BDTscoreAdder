@@ -28,7 +28,11 @@ compile code
 ```
 cd BDTscoreAdder
 export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:${CMSSW_BASE}/src/FastForest/build/
-g++ -fPIC -std=c++11 Events.cc -o addbdtscore.exe -lfastforest -I ../FastForest/include/ -L ../FastForest/build/ `root-config --glibs --cflags`
-./addbdtscore.exe inputfiles.txt outputfilename outputfiledir
+g++ -fPIC -std=c++11 src/EventsBase.C src/Events.cc -o addbdtscoredata.exe -lfastforest -I ../FastForest/include/ -L ../FastForest/build/ `root-config --glibs --cflags`
+./addbdtscoredata.exe filelists/inputfiles.txt outputfilename outputfiledir
+
+g++ -fPIC -std=c++11 src/EventsBaseMC.C src/EventsMC.cc -o addbdtscoreMC.exe -lfastforest -I ../FastForest/include/ -L ../FastForest/build/ `root-config --glibs --cflags`
+./addbdtscoreMC.exe filelists/inputfiles.txt outputfilename outputfiledir
+
 ```
 XGBOOST MODELS SHOULD BE TRAINED USING OBJECTIVE = objective='binary:logitraw' AND SAVED USING booster.dump_model("model.txt")
