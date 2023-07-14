@@ -1,5 +1,5 @@
 #define EventsBase_cxx
-#include "../EventsBase.h"
+#include "../include/EventsBase.h"
 #include <TH2.h>
 #include <TStyle.h>
 #include <TCanvas.h>
