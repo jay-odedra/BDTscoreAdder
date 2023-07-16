@@ -302,7 +302,26 @@ void EventsMC::LoopMC(std::string outname, std::string outdir)
       recoB_lKDr_MC = recoB_lKDr;
       recoB_k_opp_l_mass_MC = recoB_k_opp_l_mass;      
       recoB_p_assymetry_MC = recoB_p_assymetry; 
-      BDTSCORE_1_MC = -123432543.5;     
+      
+      float k_svip3d_sig_MC = recoB_k_svip3d_MC/recoB_k_svip3d_err_MC;
+      float fit_pt_over_mass_MC = recoB_fit_pt_MC/recoB_fit_mass_MC;
+      float fit_pt_l1_over_mass_MC = recoB_fit_l1_pt_MC/recoB_fit_mass_MC;
+      float fit_pt_l2_over_mass_MC = recoB_fit_l2_pt_MC/recoB_fit_mass_MC;
+      float fit_pt_k_over_mass_MC = recoB_fit_k_pt_MC/recoB_fit_mass_MC;
+
+
+      std::vector<float> input{recoB_fit_pt_MC,recoB_fit_eta_MC,recoB_fit_phi_MC,
+          recoB_D0_mass_LepToK_KToPi_MC,recoB_D0_mass_LepToPi_KToK_MC,recoB_fit_cos2D_MC,
+          recoB_svprob_MC,recoB_b_iso04_MC,recoB_fit_k_pt_MC,recoB_fit_k_eta_MC,
+          recoB_fit_k_phi_MC,recoB_fit_l1_pt_MC,recoB_fit_l1_eta_MC,recoB_fit_l1_phi_MC,
+          recoB_fit_l2_pt_MC,recoB_fit_l2_eta_MC,recoB_fit_l2_phi_MC,recoB_l1_iso04_MC,
+          recoB_l2_iso04_MC,recoB_k_iso04_MC,recoB_l1_PFMvaID_Fall17_MC,recoB_l2_PFMvaID_Fall17_MC,
+          recoB_l1_PFMvaID_retrained_MC,recoB_l2_PFMvaID_retrained_MC,recoB_l1_iso04_dca_MC,
+          recoB_l2_iso04_dca_MC,recoB_b_iso04_dca_MC,recoB_k_iso04_dca_MC,recoB_l1_n_isotrk_dca_MC,
+          recoB_l2_n_isotrk_dca_MC,recoB_k_n_isotrk_dca_MC,recoB_l_xy_sig_MC,recoB_l1l2Dz_MC,
+          recoB_lKDz_MC,recoB_l1l2Dr_MC,recoB_p_assymetry_MC,k_svip3d_sig_MC,
+          fit_pt_over_mass_MC,fit_pt_l1_over_mass_MC,fit_pt_l2_over_mass_MC,fit_pt_k_over_mass_MC};
+      BDTSCORE_1_MC = bdt1(input.data());     
       //std::cout<<HLT_DoubleEle10_eta1p22_mMax6_<<std::endl;
       outTreeMC_->Fill();     
       initVarsMC();
@@ -657,6 +676,7 @@ void EventsMC::initVarsMC() {
     recoB_lKDr_MC=-1000.;
     recoB_k_opp_l_mass_MC=-1000.;
     recoB_p_assymetry_MC=-1000.;
+    BDTSCORE_1_MC=-1000.;
 }
 
 int main(int argc, char* argv[]){
