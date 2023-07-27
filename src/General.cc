@@ -1,5 +1,5 @@
-#define Events_cxx
-#include "../include/Events.hh"
+#define General_cxx
+#include "../include/General.hh"
 #include <TH2.h>
 #include <TStyle.h>
 #include <TCanvas.h>
@@ -45,8 +45,8 @@
 #include <string>
 #include <thread>
 
-Events::Events(TTree* tree) :
-  EventsBase((TTree*)tree){
+General::General(TTree* tree) :
+  GeneralBase((TTree*)tree){
     std::cout<<"base"<<std::endl;
   }
 void LoadBDT(fastforest::FastForest& bdt,std::string modellocation,std::vector<std::string> features){
@@ -72,7 +72,9 @@ void timing( int nentries, int jentry, auto start ) {
 	    << std::endl;
 }
 
-void Events::Loop(std::string outname, std::string outdir)
+
+
+void General::Loop(std::string outname, std::string outdir)
 {
 //   In a ROOT session, you can do:
 //      root> .L Events.C
@@ -115,178 +117,181 @@ void Events::Loop(std::string outname, std::string outdir)
       Long64_t ientry = LoadTree(jentry);
       if (ientry < 0) break;
       if (jentry%interval==0) { timing(nentries,jentry,start); }
-        run_ = run ;
-        luminosityBlock_ = luminosityBlock ;
-        event_ =        event ;
-        bunchCrossing_ = bunchCrossing ;
-        nBToKEE_ = nBToKEE ;
-        nElectron_ = nElectron ;
-        nProbeTracks_ = nProbeTracks ;
-        HLT_DoubleEle10_eta1p22_mMax6_ = HLT_DoubleEle10_eta1p22_mMax6 ;
-        HLT_DoubleEle9p5_eta1p22_mMax6_ = HLT_DoubleEle9p5_eta1p22_mMax6 ;
-        HLT_DoubleEle9_eta1p22_mMax6_ = HLT_DoubleEle9_eta1p22_mMax6 ;
-        HLT_DoubleEle8p5_eta1p22_mMax6_ = HLT_DoubleEle8p5_eta1p22_mMax6 ;
-        HLT_DoubleEle8_eta1p22_mMax6_ = HLT_DoubleEle8_eta1p22_mMax6 ;
-        HLT_DoubleEle7p5_eta1p22_mMax6_ = HLT_DoubleEle7p5_eta1p22_mMax6 ;
-        HLT_DoubleEle7_eta1p22_mMax6_ = HLT_DoubleEle7_eta1p22_mMax6 ;
-        HLT_DoubleEle6p5_eta1p22_mMax6_ = HLT_DoubleEle6p5_eta1p22_mMax6 ;
-        HLT_DoubleEle6_eta1p22_mMax6_ = HLT_DoubleEle6_eta1p22_mMax6 ;
-        HLT_DoubleEle5p5_eta1p22_mMax6_ = HLT_DoubleEle5p5_eta1p22_mMax6 ;
-        HLT_DoubleEle5_eta1p22_mMax6_ = HLT_DoubleEle5_eta1p22_mMax6 ;
-        HLT_DoubleEle4p5_eta1p22_mMax6_ = HLT_DoubleEle4p5_eta1p22_mMax6 ;
-        HLT_DoubleEle4_eta1p22_mMax6_ = HLT_DoubleEle4_eta1p22_mMax6 ;
-        L1_DoubleEG11_er1p2_dR_Max0p6_ = L1_DoubleEG11_er1p2_dR_Max0p6 ;
-        L1_DoubleEG10p5_er1p2_dR_Max0p6 = L1_DoubleEG10p5_er1p2_dR_Max0p6 ;
-        L1_DoubleEG10_er1p2_dR_Max0p6_ = L1_DoubleEG10_er1p2_dR_Max0p6 ;
-        L1_DoubleEG9p5_er1p2_dR_Max0p6_ = L1_DoubleEG9p5_er1p2_dR_Max0p6 ;
-        L1_DoubleEG9_er1p2_dR_Max0p7_ = L1_DoubleEG9_er1p2_dR_Max0p7 ;
-        L1_DoubleEG8p5_er1p2_dR_Max0p7_ = L1_DoubleEG8p5_er1p2_dR_Max0p7 ;
-        L1_DoubleEG8_er1p2_dR_Max0p7_ = L1_DoubleEG8_er1p2_dR_Max0p7 ;
-        L1_DoubleEG7p5_er1p2_dR_Max0p7_ = L1_DoubleEG7p5_er1p2_dR_Max0p7 ;
-        L1_DoubleEG7_er1p2_dR_Max0p8_ = L1_DoubleEG7_er1p2_dR_Max0p8 ;
-        L1_DoubleEG6p5_er1p2_dR_Max0p8_ = L1_DoubleEG6p5_er1p2_dR_Max0p8 ;
-        L1_DoubleEG6_er1p2_dR_Max0p8_ = L1_DoubleEG6_er1p2_dR_Max0p8 ;
-        L1_DoubleEG5p5_er1p2_dR_Max0p8_ = L1_DoubleEG5p5_er1p2_dR_Max0p8 ;
-        L1_DoubleEG5_er1p2_dR_Max0p9_ = L1_DoubleEG5_er1p2_dR_Max0p9 ;
-        L1_DoubleEG4p5_er1p2_dR_Max0p9_ = L1_DoubleEG4p5_er1p2_dR_Max0p9 ;
-        L1_DoubleEG4_er1p2_dR_Max0p9_ = L1_DoubleEG4_er1p2_dR_Max0p9 ;
-        nTrigObj_ = nTrigObj ;
-        nOtherPV_ = nOtherPV ;
-        PV_ndof_ =   PV_ndof ;
-        PV_x_ =   PV_x ;
-        PV_y_ =   PV_y ;
-        PV_z_ =   PV_z ;
-        PV_chi2_ =   PV_chi2 ;
-        PV_score_ =   PV_score ;
-        PV_npvs_ =  PV_npvs ;
-        PV_npvsGood_ =  PV_npvsGood ;
-        nSV_ = nSV ;
-        nSkimBToKEE_ = nSkimBToKEE ;
+      run_ = run;
+      luminosityBlock_ = luminosityBlock;
+      event_ =         event;
+      bunchCrossing_ = bunchCrossing;
+      nBToKEE_ = nBToKEE;
+      nElectron_ = nElectron;
+      nGenPart_ = nGenPart;
+      genWeight_ = genWeight;
+      nPSWeight_ = nPSWeight;
+      nProbeTracks_ = nProbeTracks;
+      HLT_DoubleEle10_eta1p22_mMax6_ = HLT_DoubleEle10_eta1p22_mMax6;
+      HLT_DoubleEle9p5_eta1p22_mMax6_ = HLT_DoubleEle9p5_eta1p22_mMax6;
+      HLT_DoubleEle9_eta1p22_mMax6_ = HLT_DoubleEle9_eta1p22_mMax6;
+      HLT_DoubleEle8p5_eta1p22_mMax6_ = HLT_DoubleEle8p5_eta1p22_mMax6;
+      HLT_DoubleEle8_eta1p22_mMax6_ = HLT_DoubleEle8_eta1p22_mMax6;
+      HLT_DoubleEle7p5_eta1p22_mMax6_ = HLT_DoubleEle7p5_eta1p22_mMax6;
+      HLT_DoubleEle7_eta1p22_mMax6_ = HLT_DoubleEle7_eta1p22_mMax6;
+      HLT_DoubleEle6p5_eta1p22_mMax6_ = HLT_DoubleEle6p5_eta1p22_mMax6;
+      HLT_DoubleEle6_eta1p22_mMax6_ = HLT_DoubleEle6_eta1p22_mMax6;
+      HLT_DoubleEle5p5_eta1p22_mMax6_ = HLT_DoubleEle5p5_eta1p22_mMax6;
+      HLT_DoubleEle5_eta1p22_mMax6_ = HLT_DoubleEle5_eta1p22_mMax6;
+      HLT_DoubleEle4p5_eta1p22_mMax6_ = HLT_DoubleEle4p5_eta1p22_mMax6;
+      HLT_DoubleEle4_eta1p22_mMax6_ = HLT_DoubleEle4_eta1p22_mMax6;
+      L1_DoubleEG11_er1p2_dR_Max0p6_ = L1_DoubleEG11_er1p2_dR_Max0p6;
+      L1_DoubleEG10p5_er1p2_dR_Max0p6_ = L1_DoubleEG10p5_er1p2_dR_Max0p6;
+      L1_DoubleEG10_er1p2_dR_Max0p6_ = L1_DoubleEG10_er1p2_dR_Max0p6;
+      L1_DoubleEG9p5_er1p2_dR_Max0p6_ = L1_DoubleEG9p5_er1p2_dR_Max0p6;
+      L1_DoubleEG9_er1p2_dR_Max0p7_ = L1_DoubleEG9_er1p2_dR_Max0p7;
+      L1_DoubleEG8p5_er1p2_dR_Max0p7_ = L1_DoubleEG8p5_er1p2_dR_Max0p7;
+      L1_DoubleEG8_er1p2_dR_Max0p7_ = L1_DoubleEG8_er1p2_dR_Max0p7;
+      L1_DoubleEG7p5_er1p2_dR_Max0p7_ = L1_DoubleEG7p5_er1p2_dR_Max0p7;
+      L1_DoubleEG7_er1p2_dR_Max0p8_ = L1_DoubleEG7_er1p2_dR_Max0p8;
+      L1_DoubleEG6p5_er1p2_dR_Max0p8_ = L1_DoubleEG6p5_er1p2_dR_Max0p8;
+      L1_DoubleEG6_er1p2_dR_Max0p8_ = L1_DoubleEG6_er1p2_dR_Max0p8;
+      L1_DoubleEG5p5_er1p2_dR_Max0p8_ = L1_DoubleEG5p5_er1p2_dR_Max0p8;
+      L1_DoubleEG5_er1p2_dR_Max0p9_ = L1_DoubleEG5_er1p2_dR_Max0p9;
+      L1_DoubleEG4p5_er1p2_dR_Max0p9_ = L1_DoubleEG4p5_er1p2_dR_Max0p9;
+      L1_DoubleEG4_er1p2_dR_Max0p9_ = L1_DoubleEG4_er1p2_dR_Max0p9;
+      nTrigObj_ = nTrigObj;
+      nOtherPV_ = nOtherPV;
+      PV_ndof_ =   PV_ndof;
+      PV_x_ =   PV_x;
+      PV_y_ =   PV_y;
+      PV_z_ =   PV_z;
+      PV_chi2_ =   PV_chi2;
+      PV_score_ =   PV_score;
+      PV_npvs_ =  PV_npvs;
+      PV_npvsGood_ =  PV_npvsGood;
+      nSV_ = nSV;
+      genB_pdgId_ = genB_pdgId;
+      genE1_pdgId_ = genE1_pdgId;
+      genE2_pdgId_ = genE2_pdgId;
+      genK_pdgId_ = genK_pdgId ;
+      genB_pt_ = genB_pt ;
+      genE1_pt_ = genE1_pt;
+      genE2_pt_ = genE2_pt;
+      genK_pt_ = genK_pt;
+      genB_eta_ = genB_eta ;
+      genE1_eta_ = genE1_eta;
+      genE2_eta_ = genE2_eta;
+      genK_eta_ = genK_eta ;
+      genB_phi_ = genB_phi ;
+      genE1_phi_ = genE1_phi;
+      genE2_phi_ = genE2_phi;
+      genK_phi_ = genK_phi ;
+      genB_mass_ = genB_mass;
+      genE1_mass_ = genE1_mass;
+      genE2_mass_ = genE2_mass;
+      genK_mass_ = genK_mass ;
+      genB_charge_ = genB_charge ;
+      genE1_charge_ = genE1_charge;
+      genE2_charge_ = genE2_charge;
+      genK_charge_ = genK_charge;
+      nSkimBToKEE_ = nSkimBToKEE;
+      BToKEE_fit_pt_ = BToKEE_fit_pt;
+      BToKEE_fit_eta_ = BToKEE_fit_eta;
+      BToKEE_fit_phi_ = BToKEE_fit_phi;
+      BToKEE_D0_mass_LepToK_KToPi_ = BToKEE_D0_mass_LepToK_KToPi;
+      BToKEE_D0_mass_LepToPi_KToK_ = BToKEE_D0_mass_LepToPi_KToK;
+      BToKEE_fit_mass_ = BToKEE_fit_mass;
+      BToKEE_l_xy_ = BToKEE_l_xy;
+      BToKEE_l_xy_unc_ = BToKEE_l_xy_unc;
+      BToKEE_fit_cos2D_ = BToKEE_fit_cos2D;
+      BToKEE_svprob_ = BToKEE_svprob;
+      BToKEE_fit_massErr_ = BToKEE_fit_massErr;
+      BToKEE_b_iso04_ = BToKEE_b_iso04;
+      BToKEE_mll_fullfit_ = BToKEE_mll_fullfit;
+      BToKEE_vtx_x_ = BToKEE_vtx_x;
+      BToKEE_vtx_y_ = BToKEE_vtx_y;
+      BToKEE_vtx_z_ = BToKEE_vtx_z;
+      BToKEE_l1Idx_ = BToKEE_l1Idx;
+      BToKEE_l2Idx_ = BToKEE_l2Idx;
+      BToKEE_kIdx_ = BToKEE_kIdx;
+      BToKEE_fit_k_pt_ = BToKEE_fit_k_pt;
+      BToKEE_fit_k_eta_ = BToKEE_fit_k_eta;
+      BToKEE_fit_k_phi_ = BToKEE_fit_k_phi;
+      BToKEE_fit_l1_pt_ = BToKEE_fit_l1_pt;
+      BToKEE_fit_l1_eta_ = BToKEE_fit_l1_eta;
+      BToKEE_fit_l1_phi_ = BToKEE_fit_l1_phi;
+      BToKEE_fit_l2_pt_ = BToKEE_fit_l2_pt;
+      BToKEE_fit_l2_eta_ = BToKEE_fit_l2_eta;
+      BToKEE_fit_l2_phi_ = BToKEE_fit_l2_phi;
+      BToKEE_l1_iso04_ = BToKEE_l1_iso04;
+      BToKEE_l2_iso04_ = BToKEE_l2_iso04;
+      BToKEE_l1_isPF_ = BToKEE_l1_isPF;
+      BToKEE_l2_isPF_ = BToKEE_l2_isPF;
+      BToKEE_k_iso04_ = BToKEE_k_iso04;
+      BToKEE_l1_isPFoverlap_ = BToKEE_l1_isPFoverlap;
+      BToKEE_l2_isPFoverlap_ = BToKEE_l2_isPFoverlap;
+      BToKEE_l1_LooseId_ = BToKEE_l1_LooseId;
+      BToKEE_l2_LooseId_ = BToKEE_l2_LooseId;
+      BToKEE_l1_MediumId_ = BToKEE_l1_MediumId;
+      BToKEE_l2_MediumId_ = BToKEE_l2_MediumId;
+      BToKEE_l1_TightId_ = BToKEE_l1_TightId;
+      BToKEE_l2_TightId_ = BToKEE_l2_TightId;
+      BToKEE_l1_ConvVeto_ = BToKEE_l1_ConvVeto;
+      BToKEE_l2_ConvVeto_ = BToKEE_l2_ConvVeto;
+      BToKEE_l1_PFMvaID_Fall17_ = BToKEE_l1_PFMvaID_Fall17;
+      BToKEE_l2_PFMvaID_Fall17_ = BToKEE_l2_PFMvaID_Fall17;
+      BToKEE_l1_PFMvaID_retrained_ = BToKEE_l1_PFMvaID_retrained;
+      BToKEE_l2_PFMvaID_retrained_ = BToKEE_l2_PFMvaID_retrained;
+      BToKEE_l1_iso04_dca_ = BToKEE_l1_iso04_dca;
+      BToKEE_l2_iso04_dca_ = BToKEE_l2_iso04_dca;
+      BToKEE_b_iso04_dca_ = BToKEE_b_iso04_dca;
+      BToKEE_k_iso04_dca_ = BToKEE_k_iso04_dca;
+      BToKEE_k_svip3d_ = BToKEE_k_svip3d;
+      BToKEE_k_svip3d_err_ = BToKEE_k_svip3d_err;
+      BToKEE_l1_n_isotrk_dca_ = BToKEE_l1_n_isotrk_dca;
+      BToKEE_l2_n_isotrk_dca_ = BToKEE_l2_n_isotrk_dca;
+      BToKEE_k_n_isotrk_dca_ = BToKEE_k_n_isotrk_dca;
+      BToKEE_l1_vx_ = BToKEE_l1_vx;
+      BToKEE_l1_vy_ = BToKEE_l1_vy;
+      BToKEE_l1_vz_ = BToKEE_l1_vz;
+      BToKEE_l1_charge_ = BToKEE_l1_charge;
+      BToKEE_l2_vx_ = BToKEE_l2_vx;
+      BToKEE_l2_vy_ = BToKEE_l2_vy;
+      BToKEE_l2_vz_ = BToKEE_l2_vz;
+      BToKEE_l2_charge_ = BToKEE_l2_charge;
+      BToKEE_k_vx_ = BToKEE_k_vx;
+      BToKEE_k_vy_ = BToKEE_k_vy;
+      BToKEE_k_vz_ = BToKEE_k_vz;
+      BToKEE_k_dca_sig_ = BToKEE_k_dca_sig;
+      BToKEE_k_dz_ = BToKEE_k_dz;
+      BToKEE_kMu_matched_ = BToKEE_kMu_matched;
+      BToKEE_l_xy_sig_ = BToKEE_l_xy_sig;
+      BToKEE_l1l2Dz_ = BToKEE_l1l2Dz;
+      BToKEE_lKDz_ = BToKEE_lKDz;
+      BToKEE_l1l2Dr_ = BToKEE_l1l2Dr;
+      BToKEE_lKDr_ = BToKEE_lKDr;
+      BToKEE_kl_massKPi_ = BToKEE_kl_massKPi;
+      BToKEE_p_assymetry_ = BToKEE_p_assymetry;
 
-      //std::cout<<run<<std::endl;
-      for(int i=0;i<nSkimBToKEE_;i++){
-         BToKEE_fit_pt_ = SkimBToKEE_fit_pt[i];
-         BToKEE_fit_eta_ = SkimBToKEE_fit_eta[i];
-         BToKEE_fit_phi_ = SkimBToKEE_fit_phi[i];
-         BToKEE_D0_mass_LepToK_KToPi_ = SkimBToKEE_D0_mass_LepToK_KToPi[i];
-         BToKEE_D0_mass_LepToPi_KToK_ = SkimBToKEE_D0_mass_LepToPi_KToK[i];
-         BToKEE_fit_mass_ = SkimBToKEE_fit_mass[i];
-         BToKEE_l_xy_ = SkimBToKEE_l_xy[i];
-         BToKEE_l_xy_unc_ = SkimBToKEE_l_xy_unc[i];
-         BToKEE_fit_cos2D_ = SkimBToKEE_fit_cos2D[i];
-         BToKEE_svprob_ = SkimBToKEE_svprob[i];
-         BToKEE_fit_massErr_ = SkimBToKEE_fit_massErr[i];
-         BToKEE_b_iso04_ = SkimBToKEE_b_iso04[i];
-         BToKEE_mll_fullfit_ = SkimBToKEE_mll_fullfit[i];
-         BToKEE_vtx_x_ = SkimBToKEE_vtx_x[i];
-         BToKEE_vtx_y_ = SkimBToKEE_vtx_y[i];
-         BToKEE_vtx_z_ = SkimBToKEE_vtx_z[i];
-         BToKEE_l1Idx_ = SkimBToKEE_l1Idx[i];
-         BToKEE_l2Idx_ = SkimBToKEE_l2Idx[i];
-         BToKEE_kIdx_ = SkimBToKEE_kIdx[i];
-         BToKEE_fit_k_pt_ = SkimBToKEE_fit_k_pt[i];
-         BToKEE_fit_k_eta_ = SkimBToKEE_fit_k_eta[i];
-         BToKEE_fit_k_phi_ = SkimBToKEE_fit_k_phi[i];
-         BToKEE_fit_l1_pt_ = SkimBToKEE_fit_l1_pt[i];
-         BToKEE_fit_l1_eta_ = SkimBToKEE_fit_l1_eta[i];
-         BToKEE_fit_l1_phi_ = SkimBToKEE_fit_l1_phi[i];
-         BToKEE_fit_l2_pt_ = SkimBToKEE_fit_l2_pt[i];
-         BToKEE_fit_l2_eta_ = SkimBToKEE_fit_l2_eta[i];
-         BToKEE_fit_l2_phi_ = SkimBToKEE_fit_l2_phi[i];
-         BToKEE_l1_iso04_ = SkimBToKEE_l1_iso04[i];
-         BToKEE_l2_iso04_ = SkimBToKEE_l2_iso04[i];
-         BToKEE_l1_isPF_ = SkimBToKEE_l1_isPF[i];
-         BToKEE_l2_isPF_ = SkimBToKEE_l2_isPF[i];
-         BToKEE_k_iso04_ = SkimBToKEE_k_iso04[i];
-         BToKEE_l1_isPFoverlap_ = SkimBToKEE_l1_isPFoverlap[i];
-         BToKEE_l2_isPFoverlap_ = SkimBToKEE_l2_isPFoverlap[i];
-         BToKEE_l1_LooseId_ = SkimBToKEE_l1_LooseId[i];
-         BToKEE_l2_LooseId_ = SkimBToKEE_l2_LooseId[i];
-         BToKEE_l1_MediumId_ = SkimBToKEE_l1_MediumId[i];
-         BToKEE_l2_MediumId_ = SkimBToKEE_l2_MediumId[i];
-         BToKEE_l1_TightId_ = SkimBToKEE_l1_TightId[i];
-         BToKEE_l2_TightId_ = SkimBToKEE_l2_TightId[i];
-         BToKEE_l1_ConvVeto_ = SkimBToKEE_l1_ConvVeto[i];
-         BToKEE_l2_ConvVeto_ = SkimBToKEE_l2_ConvVeto[i];
-         BToKEE_l1_PFMvaID_Fall17_ = SkimBToKEE_l1_PFMvaID_Fall17[i];
-         BToKEE_l2_PFMvaID_Fall17_ = SkimBToKEE_l2_PFMvaID_Fall17[i];
-         BToKEE_l1_PFMvaID_retrained_ = SkimBToKEE_l1_PFMvaID_retrained[i];
-         BToKEE_l2_PFMvaID_retrained_ = SkimBToKEE_l2_PFMvaID_retrained[i];
-         BToKEE_l1_iso04_dca_ = SkimBToKEE_l1_iso04_dca[i];
-         BToKEE_l2_iso04_dca_ = SkimBToKEE_l2_iso04_dca[i];
-         BToKEE_b_iso04_dca_ = SkimBToKEE_b_iso04_dca[i];
-         BToKEE_k_iso04_dca_ = SkimBToKEE_k_iso04_dca[i];
-         BToKEE_k_svip3d_ = SkimBToKEE_k_svip3d[i];
-         BToKEE_k_svip3d_err_ = SkimBToKEE_k_svip3d_err[i];
-         BToKEE_l1_n_isotrk_dca_ = SkimBToKEE_l1_n_isotrk_dca[i];
-         BToKEE_l2_n_isotrk_dca_ = SkimBToKEE_l2_n_isotrk_dca[i];
-         BToKEE_k_n_isotrk_dca_ = SkimBToKEE_k_n_isotrk_dca[i];
-         BToKEE_l1_vx_ = SkimBToKEE_l1_vx[i];
-         BToKEE_l1_vy_ = SkimBToKEE_l1_vy[i];
-         BToKEE_l1_vz_ = SkimBToKEE_l1_vz[i];
-         BToKEE_l1_charge_ = SkimBToKEE_l1_charge[i];
-         BToKEE_l2_vx_ = SkimBToKEE_l2_vx[i];
-         BToKEE_l2_vy_ = SkimBToKEE_l2_vy[i];
-         BToKEE_l2_vz_ = SkimBToKEE_l2_vz[i];
-         BToKEE_l2_charge_ = SkimBToKEE_l2_charge[i];
-         BToKEE_k_vx_ = SkimBToKEE_k_vx[i];
-         BToKEE_k_vy_ = SkimBToKEE_k_vy[i];
-         BToKEE_k_vz_ = SkimBToKEE_k_vz[i];
-         BToKEE_k_dca_sig_ = SkimBToKEE_k_dca_sig[i];
-         BToKEE_k_dz_ = SkimBToKEE_k_dz[i];
-         BToKEE_kMu_matched_ = SkimBToKEE_kMu_matched[i];
-         BToKEE_k_charge_ = SkimBToKEE_k_charge[i];
-         BToKEE_l_xy_sig_ = SkimBToKEE_l_xy_sig[i];
-         BToKEE_l1l2Dz_ = SkimBToKEE_l1l2Dz[i];
-         BToKEE_lKDz_ = SkimBToKEE_lKDz[i];
-         BToKEE_l1l2Dr_ = SkimBToKEE_l1l2Dr[i];
-         BToKEE_lKDr_ = SkimBToKEE_lKDr[i];
-         BToKEE_kl_massKPi_ = SkimBToKEE_kl_massKPi[i];
-         BToKEE_p_assymetry_ = SkimBToKEE_p_assymetry[i];
-         float BToKEE_k_svip3d_sig_ = BToKEE_k_svip3d_/BToKEE_k_svip3d_err_;
-         float BToKEE_fit_pt_over_mass_= BToKEE_fit_pt_/BToKEE_fit_mass_;
-         float BToKEE_fit_l1_pt_over_mass_ = BToKEE_fit_l1_pt_/BToKEE_fit_mass_;
-         float BToKEE_fit_l2_pt_over_mass_ = BToKEE_fit_l2_pt_/BToKEE_fit_mass_;
-         float BToKEE_fit_k_pt_over_mass_ = BToKEE_fit_k_pt_/BToKEE_fit_mass_;
-         
-         //bdt1 inputvector
-         std::vector<float> input{BToKEE_fit_pt_,BToKEE_fit_eta_,BToKEE_fit_phi_,
-            BToKEE_D0_mass_LepToK_KToPi_,BToKEE_D0_mass_LepToPi_KToK_,BToKEE_fit_cos2D_,
-            BToKEE_svprob_,BToKEE_b_iso04_,BToKEE_fit_k_pt_,BToKEE_fit_k_eta_,
-            BToKEE_fit_k_phi_,BToKEE_fit_l1_pt_,BToKEE_fit_l1_eta_,BToKEE_fit_l1_phi_,
-            BToKEE_fit_l2_pt_,BToKEE_fit_l2_eta_,BToKEE_fit_l2_phi_,BToKEE_l1_iso04_,
-            BToKEE_l2_iso04_,BToKEE_k_iso04_,BToKEE_l1_PFMvaID_Fall17_,BToKEE_l2_PFMvaID_Fall17_,
-            BToKEE_l1_PFMvaID_retrained_,BToKEE_l2_PFMvaID_retrained_,BToKEE_l1_iso04_dca_,
-            BToKEE_l2_iso04_dca_,BToKEE_b_iso04_dca_,BToKEE_k_iso04_dca_,BToKEE_l1_n_isotrk_dca_,
-            BToKEE_l2_n_isotrk_dca_,BToKEE_k_n_isotrk_dca_,BToKEE_l_xy_sig_,BToKEE_l1l2Dz_,
-            BToKEE_lKDz_,BToKEE_l1l2Dr_,BToKEE_p_assymetry_,BToKEE_k_svip3d_sig_,
-            BToKEE_fit_pt_over_mass_,BToKEE_fit_l1_pt_over_mass_,BToKEE_fit_l2_pt_over_mass_,BToKEE_fit_k_pt_over_mass_};
-         BDTSCORE_1 = bdt1(input.data());
-         outTree_->Fill();     
-         initVars();
-      }
-
-      
       //std::cout<<HLT_DoubleEle10_eta1p22_mMax6_<<std::endl;
+      outTree_->Fill();     
+      initVars();
       nb = fChain->GetEntry(jentry);   nbytes += nb;
-      if(jentry>5000){
-        break;
-      }
    }
    outFile_->Write();
    outFile_->Close();
 }
-void Events::Output(std::string outname, std::string outdir) {
-   TString outputfilename(std::string(outdir)+"/"+std::string(outname)+"_.root");
+
+void General::Output(std::string outname, std::string outdir) {
+   TString outputfilename(std::string(outdir)+"/"+std::string(outname)+"_MC_.root");
    outFile_ = new TFile(outputfilename,"RECREATE");
-   outTree_ = new TTree("Events","Events");
+   outTree_ = new TTree("tree","tree");
    outTree_->Branch("run", &run_);
-   outTree_->Branch("luminosityBlock", &luminosityBlock_);;
-   outTree_->Branch(" event", &       event_);;
-   outTree_->Branch("bunchCrossing", &bunchCrossing_);;
-   outTree_->Branch("nBToKEE", &nBToKEE_);;
-   outTree_->Branch("nElectron", &nElectron_);;
-   outTree_->Branch("nProbeTracks", &nProbeTracks_);;
+   outTree_->Branch("luminosityBlock", &luminosityBlock_);
+   outTree_->Branch("        event", &        event_);
+   outTree_->Branch("bunchCrossing", &bunchCrossing_);
+   outTree_->Branch("nBToKEE", &nBToKEE_);
+   outTree_->Branch("nElectron", &nElectron_);
+   outTree_->Branch("nGenPart", &nGenPart_);
+   outTree_->Branch("genWeight", &genWeight_);
+   outTree_->Branch("nPSWeight", &nPSWeight_);
+   outTree_->Branch("nProbeTracks", &nProbeTracks_);
    outTree_->Branch("HLT_DoubleEle10_eta1p22_mMax6", &HLT_DoubleEle10_eta1p22_mMax6_);
    outTree_->Branch("HLT_DoubleEle9p5_eta1p22_mMax6", &HLT_DoubleEle9p5_eta1p22_mMax6_);
    outTree_->Branch("HLT_DoubleEle9_eta1p22_mMax6", &HLT_DoubleEle9_eta1p22_mMax6_);
@@ -301,7 +306,7 @@ void Events::Output(std::string outname, std::string outdir) {
    outTree_->Branch("HLT_DoubleEle4p5_eta1p22_mMax6", &HLT_DoubleEle4p5_eta1p22_mMax6_);
    outTree_->Branch("HLT_DoubleEle4_eta1p22_mMax6", &HLT_DoubleEle4_eta1p22_mMax6_);
    outTree_->Branch("L1_DoubleEG11_er1p2_dR_Max0p6", &L1_DoubleEG11_er1p2_dR_Max0p6_);
-   outTree_->Branch("L1_DoubleEG10p5_er1p2_dR_Max0p6", &L1_DoubleEG10p5_er1p2_dR_Max0p6);
+   outTree_->Branch("L1_DoubleEG10p5_er1p2_dR_Max0p", &L1_DoubleEG10p5_er1p2_dR_Max0p6);
    outTree_->Branch("L1_DoubleEG10_er1p2_dR_Max0p6", &L1_DoubleEG10_er1p2_dR_Max0p6_);
    outTree_->Branch("L1_DoubleEG9p5_er1p2_dR_Max0p6", &L1_DoubleEG9p5_er1p2_dR_Max0p6_);
    outTree_->Branch("L1_DoubleEG9_er1p2_dR_Max0p7", &L1_DoubleEG9_er1p2_dR_Max0p7_);
@@ -326,10 +331,31 @@ void Events::Output(std::string outname, std::string outdir) {
    outTree_->Branch(" PV_npvs", & PV_npvs_);
    outTree_->Branch(" PV_npvsGood", & PV_npvsGood_);
    outTree_->Branch("nSV", &nSV_);
+   outTree_->Branch("genB_pdgId", &genB_pdgId_);
+   outTree_->Branch("genE1_pdgId", &genE1_pdgId_);
+   outTree_->Branch("genE2_pdgId", &genE2_pdgId_);
+   outTree_->Branch("genK_pdgId ", &genK_pdgId_);
+   outTree_->Branch("genB_pt ", &genB_pt_);
+   outTree_->Branch("genE1_pt", &genE1_pt_);
+   outTree_->Branch("genE2_pt", &genE2_pt_);
+   outTree_->Branch("genK_pt", &genK_pt_);
+   outTree_->Branch("genB_eta ", &genB_eta_);
+   outTree_->Branch("genE1_eta", &genE1_eta_);
+   outTree_->Branch("genE2_eta", &genE2_eta_);
+   outTree_->Branch("genK_eta ", &genK_eta_);
+   outTree_->Branch("genB_phi ", &genB_phi_);
+   outTree_->Branch("genE1_phi", &genE1_phi_);
+   outTree_->Branch("genE2_phi", &genE2_phi_);
+   outTree_->Branch("genK_phi ", &genK_phi_);
+   outTree_->Branch("genB_mass", &genB_mass_);
+   outTree_->Branch("genE1_mass", &genE1_mass_);
+   outTree_->Branch("genE2_mass", &genE2_mass_);
+   outTree_->Branch("genK_mass ", &genK_mass_);
+   outTree_->Branch("genB_charge ", &genB_charge_);
+   outTree_->Branch("genE1_charge", &genE1_charge_);
+   outTree_->Branch("genE2_charge", &genE2_charge_);
+   outTree_->Branch("genK_charge", &genK_charge_);
    outTree_->Branch("nSkimBToKEE", &nSkimBToKEE_);
-
-
-
    outTree_->Branch("BToKEE_fit_pt", &BToKEE_fit_pt_);
    outTree_->Branch("BToKEE_fit_eta", &BToKEE_fit_eta_);
    outTree_->Branch("BToKEE_fit_phi", &BToKEE_fit_phi_);
@@ -400,7 +426,6 @@ void Events::Output(std::string outname, std::string outdir) {
    outTree_->Branch("BToKEE_k_dca_sig", &BToKEE_k_dca_sig_);
    outTree_->Branch("BToKEE_k_dz", &BToKEE_k_dz_);
    outTree_->Branch("BToKEE_kMu_matched", &BToKEE_kMu_matched_);
-   outTree_->Branch("BToKEE_k_charge", &BToKEE_k_charge_);
    outTree_->Branch("BToKEE_l_xy_sig", &BToKEE_l_xy_sig_);
    outTree_->Branch("BToKEE_l1l2Dz", &BToKEE_l1l2Dz_);
    outTree_->Branch("BToKEE_lKDz", &BToKEE_lKDz_);
@@ -408,139 +433,159 @@ void Events::Output(std::string outname, std::string outdir) {
    outTree_->Branch("BToKEE_lKDr", &BToKEE_lKDr_);
    outTree_->Branch("BToKEE_kl_massKPi", &BToKEE_kl_massKPi_);
    outTree_->Branch("BToKEE_p_assymetry", &BToKEE_p_assymetry_);
-
-   outTree_->Branch("BDTSCORE_1", &BDTSCORE_1);
-
 }
-void Events::initVars() {
-
-    run_ = -1000;
-    luminosityBlock_ = -1000;
-    event_ = -1000;
-    bunchCrossing_ = -1000;
-    nBToKEE_ = -1000;
-    nElectron_ = -1000;
-    nProbeTracks_ = -1000;
-    HLT_DoubleEle10_eta1p22_mMax6_ = false;
-    HLT_DoubleEle9p5_eta1p22_mMax6_ = false;
-    HLT_DoubleEle9_eta1p22_mMax6_ = false;
-    HLT_DoubleEle8p5_eta1p22_mMax6_ = false;
-    HLT_DoubleEle8_eta1p22_mMax6_ = false;
-    HLT_DoubleEle7p5_eta1p22_mMax6_ = false;
-    HLT_DoubleEle7_eta1p22_mMax6_ = false;
-    HLT_DoubleEle6p5_eta1p22_mMax6_ = false;
-    HLT_DoubleEle6_eta1p22_mMax6_ = false;
-    HLT_DoubleEle5p5_eta1p22_mMax6_ = false;
-    HLT_DoubleEle5_eta1p22_mMax6_ = false;
-    HLT_DoubleEle4p5_eta1p22_mMax6_ = false;
-    HLT_DoubleEle4_eta1p22_mMax6_ = false;
-    L1_DoubleEG11_er1p2_dR_Max0p6_ = false;
-    L1_DoubleEG10p5_er1p2_dR_Max0p6_ = false;
-    L1_DoubleEG10_er1p2_dR_Max0p6_ = false;
-    L1_DoubleEG9p5_er1p2_dR_Max0p6_ = false;
-    L1_DoubleEG9_er1p2_dR_Max0p7_ = false;
-    L1_DoubleEG8p5_er1p2_dR_Max0p7_ = false;
-    L1_DoubleEG8_er1p2_dR_Max0p7_ = false;
-    L1_DoubleEG7p5_er1p2_dR_Max0p7_ = false;
-    L1_DoubleEG7_er1p2_dR_Max0p8_ = false;
-    L1_DoubleEG6p5_er1p2_dR_Max0p8_ = false;
-    L1_DoubleEG6_er1p2_dR_Max0p8_ = false;
-    L1_DoubleEG5p5_er1p2_dR_Max0p8_ = false;
-    L1_DoubleEG5_er1p2_dR_Max0p9_ = false;
-    L1_DoubleEG4p5_er1p2_dR_Max0p9_ = false;
-    L1_DoubleEG4_er1p2_dR_Max0p9_ = false;
-    nTrigObj_ = -1000;
-    nOtherPV_ = -1000;
-    PV_ndof_ = -1000;
-    PV_x_ = -1000;
-    PV_y_ = -1000;
-    PV_z_ = -1000;
-    PV_chi2_ = -1000;
-    PV_score_ = -1000;
-    PV_npvs_ = -1000;
-    PV_npvsGood_ = -1000;
-    nSV_ = -1000;
-    nSkimBToKEE_ = -1000;
-    BToKEE_fit_pt_ = -1000.;
-    BToKEE_fit_eta_ = -1000.;
-    BToKEE_fit_phi_ = -1000.;
-    BToKEE_D0_mass_LepToK_KToPi_ = -1000.;
-    BToKEE_D0_mass_LepToPi_KToK_ = -1000.;
-    BToKEE_fit_mass_ = -1000.;
-    BToKEE_l_xy_ = -1000.;
-    BToKEE_l_xy_unc_ = -1000.;
-    BToKEE_fit_cos2D_ = -1000.;
-    BToKEE_svprob_ = -1000.;
-    BToKEE_fit_massErr_ = -1000.;
-    BToKEE_b_iso04_ = -1000.;
-    BToKEE_mll_fullfit_ = -1000.;
-    BToKEE_vtx_x_ = -1000.;
-    BToKEE_vtx_y_ = -1000.;
-    BToKEE_vtx_z_ = -1000.;
-    BToKEE_l1Idx_ = -1000.;
-    BToKEE_l2Idx_ = -1000.;
-    BToKEE_kIdx_ = -1000.;
-    BToKEE_fit_k_pt_ = -1000.;
-    BToKEE_fit_k_eta_ = -1000.;
-    BToKEE_fit_k_phi_ = -1000.;
-    BToKEE_fit_l1_pt_ = -1000.;
-    BToKEE_fit_l1_eta_ = -1000.;
-    BToKEE_fit_l1_phi_ = -1000.;
-    BToKEE_fit_l2_pt_ = -1000.;
-    BToKEE_fit_l2_eta_ = -1000.;
-    BToKEE_fit_l2_phi_ = -1000.;
-    BToKEE_l1_iso04_ = -1000.;
-    BToKEE_l2_iso04_ = -1000.;
-    BToKEE_l1_isPF_ = -1000.;
-    BToKEE_l2_isPF_ = -1000.;
-    BToKEE_k_iso04_ = -1000.;
-    BToKEE_l1_isPFoverlap_ = -1000.;
-    BToKEE_l2_isPFoverlap_ = -1000.;
-    BToKEE_l1_LooseId_ = -1000.;
-    BToKEE_l2_LooseId_ = -1000.;
-    BToKEE_l1_MediumId_ = -1000.;
-    BToKEE_l2_MediumId_ = -1000.;
-    BToKEE_l1_TightId_ = -1000.;
-    BToKEE_l2_TightId_ = -1000.;
-    BToKEE_l1_ConvVeto_ = -1000.;
-    BToKEE_l2_ConvVeto_ = -1000.;
-    BToKEE_l1_PFMvaID_Fall17_ = -1000.;
-    BToKEE_l2_PFMvaID_Fall17_ = -1000.;
-    BToKEE_l1_PFMvaID_retrained_ = -1000.;
-    BToKEE_l2_PFMvaID_retrained_ = -1000.;
-    BToKEE_l1_iso04_dca_ = -1000.;
-    BToKEE_l2_iso04_dca_ = -1000.;
-    BToKEE_b_iso04_dca_ = -1000.;
-    BToKEE_k_iso04_dca_ = -1000.;
-    BToKEE_k_svip3d_ = -1000.;
-    BToKEE_k_svip3d_err_ = -1000.;
-    BToKEE_l1_n_isotrk_dca_ = -1000.;
-    BToKEE_l2_n_isotrk_dca_ = -1000.;
-    BToKEE_k_n_isotrk_dca_ = -1000.;
-    BToKEE_l1_vx_ = -1000.;
-    BToKEE_l1_vy_ = -1000.;
-    BToKEE_l1_vz_ = -1000.;
-    BToKEE_l1_charge_ = -1000.;
-    BToKEE_l2_vx_ = -1000.;
-    BToKEE_l2_vy_ = -1000.;
-    BToKEE_l2_vz_ = -1000.;
-    BToKEE_l2_charge_ = -1000.;
-    BToKEE_k_vx_ = -1000.;
-    BToKEE_k_vy_ = -1000.;
-    BToKEE_k_vz_ = -1000.;
-    BToKEE_k_dca_sig_ = -1000.;
-    BToKEE_k_dz_ = -1000.;
-    BToKEE_kMu_matched_ = -1000.;
-    BToKEE_k_charge_ = -1000.;
-    BToKEE_l_xy_sig_ = -1000.;
-    BToKEE_l1l2Dz_ = -1000.;
-    BToKEE_lKDz_ = -1000.;
-    BToKEE_l1l2Dr_ = -1000.;
-    BToKEE_lKDr_ = -1000.;
-    BToKEE_kl_massKPi_ = -1000.;
-    BToKEE_p_assymetry_ = -1000.;             
-    BDTSCORE_1 = -1000.; 
-
+void General::initVars() {
+  run_ = -1000;
+  luminosityBlock_ = -1000;
+  event_ = -1000;
+  bunchCrossing_ = -1000;
+  nBToKEE_ = -1000;
+  nElectron_ = -1000;
+  nGenPart_ = -1000;
+  genWeight_ = -1000;
+  nPSWeight_ = -1000;
+  nProbeTracks_ = -1000;
+  HLT_DoubleEle10_eta1p22_mMax6_ = false;
+  HLT_DoubleEle9p5_eta1p22_mMax6_ = false;
+  HLT_DoubleEle9_eta1p22_mMax6_ = false;
+  HLT_DoubleEle8p5_eta1p22_mMax6_ = false;
+  HLT_DoubleEle8_eta1p22_mMax6_ = false;
+  HLT_DoubleEle7p5_eta1p22_mMax6_ = false;
+  HLT_DoubleEle7_eta1p22_mMax6_ = false;
+  HLT_DoubleEle6p5_eta1p22_mMax6_ = false;
+  HLT_DoubleEle6_eta1p22_mMax6_ = false;
+  HLT_DoubleEle5p5_eta1p22_mMax6_ = false;
+  HLT_DoubleEle5_eta1p22_mMax6_ = false;
+  HLT_DoubleEle4p5_eta1p22_mMax6_ = false;
+  HLT_DoubleEle4_eta1p22_mMax6_ = false;
+  L1_DoubleEG11_er1p2_dR_Max0p6_ = false;
+  L1_DoubleEG10p5_er1p2_dR_Max0p6 = false;
+  L1_DoubleEG10_er1p2_dR_Max0p6_ = false;
+  L1_DoubleEG9p5_er1p2_dR_Max0p6_ = false;
+  L1_DoubleEG9_er1p2_dR_Max0p7_ = false;
+  L1_DoubleEG8p5_er1p2_dR_Max0p7_ = false;
+  L1_DoubleEG8_er1p2_dR_Max0p7_ = false;
+  L1_DoubleEG7p5_er1p2_dR_Max0p7_ = false;
+  L1_DoubleEG7_er1p2_dR_Max0p8_ = false;
+  L1_DoubleEG6p5_er1p2_dR_Max0p8_ = false;
+  L1_DoubleEG6_er1p2_dR_Max0p8_ = false;
+  L1_DoubleEG5p5_er1p2_dR_Max0p8_ = false;
+  L1_DoubleEG5_er1p2_dR_Max0p9_ = false;
+  L1_DoubleEG4p5_er1p2_dR_Max0p9_ = false;
+  L1_DoubleEG4_er1p2_dR_Max0p9_ = false;
+  nTrigObj_ = -1000;
+  nOtherPV_ = -1000;
+  PV_ndof_ = -1000.;
+  PV_x_ = -1000.;
+  PV_y_ = -1000.;
+  PV_z_ = -1000.;
+  PV_chi2_ = -1000.;
+  PV_score_ = -1000.;
+  PV_npvs_ = -1000;
+  PV_npvsGood_ = -1000;
+  nSV_ = -1000;
+  genB_pdgId_ = -1000.;
+  genE1_pdgId_ = -1000.;
+  genE2_pdgId_ = -1000.;
+  genK_pdgId_ = -1000.;
+  genB_pt_ = -1000.;
+  genE1_pt_ = -1000.;
+  genE2_pt_ = -1000.;
+  genK_pt_ = -1000.;
+  genB_eta_ = -1000.;
+  genE1_eta_ = -1000.;
+  genE2_eta_ = -1000.;
+  genK_eta_ = -1000.;
+  genB_phi_ = -1000.;
+  genE1_phi_ = -1000.;
+  genE2_phi_ = -1000.;
+  genK_phi_ = -1000.;
+  genB_mass_ = -1000.;
+  genE1_mass_ = -1000.;
+  genE2_mass_ = -1000.;
+  genK_mass_ = -1000.;
+  genB_charge_ = -1000.;
+  genE1_charge_ = -1000.;
+  genE2_charge_ = -1000.;
+  genK_charge_ = -1000.;
+  nSkimBToKEE_ = -1000.;
+  BToKEE_fit_pt_ = -1000.;
+  BToKEE_fit_eta_ = -1000.;
+  BToKEE_fit_phi_ = -1000.;
+  BToKEE_D0_mass_LepToK_KToPi_ = -1000.;
+  BToKEE_D0_mass_LepToPi_KToK_ = -1000.;
+  BToKEE_fit_mass_ = -1000.;
+  BToKEE_l_xy_ = -1000.;
+  BToKEE_l_xy_unc_ = -1000.;
+  BToKEE_fit_cos2D_ = -1000.;
+  BToKEE_svprob_ = -1000.;
+  BToKEE_fit_massErr_ = -1000.;
+  BToKEE_b_iso04_ = -1000.;
+  BToKEE_mll_fullfit_ = -1000.;
+  BToKEE_vtx_x_ = -1000.;
+  BToKEE_vtx_y_ = -1000.;
+  BToKEE_vtx_z_ = -1000.;
+  BToKEE_l1Idx_ = -1000.;
+  BToKEE_l2Idx_ = -1000.;
+  BToKEE_kIdx_ = -1000.;
+  BToKEE_fit_k_pt_ = -1000.;
+  BToKEE_fit_k_eta_ = -1000.;
+  BToKEE_fit_k_phi_ = -1000.;
+  BToKEE_fit_l1_pt_ = -1000.;
+  BToKEE_fit_l1_eta_ = -1000.;
+  BToKEE_fit_l1_phi_ = -1000.;
+  BToKEE_fit_l2_pt_ = -1000.;
+  BToKEE_fit_l2_eta_ = -1000.;
+  BToKEE_fit_l2_phi_ = -1000.;
+  BToKEE_l1_iso04_ = -1000.;
+  BToKEE_l2_iso04_ = -1000.;
+  BToKEE_l1_isPF_ = -1000.;
+  BToKEE_l2_isPF_ = -1000.;
+  BToKEE_k_iso04_ = -1000.;
+  BToKEE_l1_isPFoverlap_ = -1000.;
+  BToKEE_l2_isPFoverlap_ = -1000.;
+  BToKEE_l1_LooseId_ = -1000.;
+  BToKEE_l2_LooseId_ = -1000.;
+  BToKEE_l1_MediumId_ = -1000.;
+  BToKEE_l2_MediumId_ = -1000.;
+  BToKEE_l1_TightId_ = -1000.;
+  BToKEE_l2_TightId_ = -1000.;
+  BToKEE_l1_ConvVeto_ = -1000.;
+  BToKEE_l2_ConvVeto_ = -1000.;
+  BToKEE_l1_PFMvaID_Fall17_ = -1000.;
+  BToKEE_l2_PFMvaID_Fall17_ = -1000.;
+  BToKEE_l1_PFMvaID_retrained_ = -1000.;
+  BToKEE_l2_PFMvaID_retrained_ = -1000.;
+  BToKEE_l1_iso04_dca_ = -1000.;
+  BToKEE_l2_iso04_dca_ = -1000.;
+  BToKEE_b_iso04_dca_ = -1000.;
+  BToKEE_k_iso04_dca_ = -1000.;
+  BToKEE_k_svip3d_ = -1000.;
+  BToKEE_k_svip3d_err_ = -1000.;
+  BToKEE_l1_n_isotrk_dca_ = -1000.;
+  BToKEE_l2_n_isotrk_dca_ = -1000.;
+  BToKEE_k_n_isotrk_dca_ = -1000.;
+  BToKEE_l1_vx_ = -1000.;
+  BToKEE_l1_vy_ = -1000.;
+  BToKEE_l1_vz_ = -1000.;
+  BToKEE_l1_charge_ = -1000.;
+  BToKEE_l2_vx_ = -1000.;
+  BToKEE_l2_vy_ = -1000.;
+  BToKEE_l2_vz_ = -1000.;
+  BToKEE_l2_charge_ = -1000.;
+  BToKEE_k_vx_ = -1000.;
+  BToKEE_k_vy_ = -1000.;
+  BToKEE_k_vz_ = -1000.;
+  BToKEE_k_dca_sig_ = -1000.;
+  BToKEE_k_dz_ = -1000.;
+  BToKEE_kMu_matched_ = -1000.;
+  BToKEE_l_xy_sig_ = -1000.;
+  BToKEE_l1l2Dz_ = -1000.;
+  BToKEE_lKDz_ = -1000.;
+  BToKEE_l1l2Dr_ = -1000.;
+  BToKEE_lKDr_ = -1000.;
+  BToKEE_kl_massKPi_ = -1000.;
+  BToKEE_p_assymetry_ = -1000.;
 }
 
 int main(int argc, char* argv[]){
@@ -574,7 +619,7 @@ int main(int argc, char* argv[]){
     }
     //chain->Add("/eos/user/j/jodedra/fastforesttester/CMSSW_13_1_0/src/smallsample_Chunk0.root/Events");
     std::cout<<chain->GetEntries()<<std::endl;
-    Events t(chain);
+    General t(chain);
     t.Loop(outputFile,outputDir);
     return 0;
 }

@@ -333,7 +333,7 @@ void EventsMC::LoopMC(std::string outname, std::string outdir)
 void EventsMC::OutputMC(std::string outname, std::string outdir) {
    TString outputfilename(std::string(outdir)+"/"+std::string(outname)+"_MC_.root");
    outFileMC_ = new TFile(outputfilename,"RECREATE");
-   outTreeMC_ = new TTree("tree","tree");
+   outTreeMC_ = new TTree("EVents","EVents");
    outTreeMC_->Branch("run", &run_MC);
    outTreeMC_->Branch("luminosityBlock", &luminosityBlock_MC);
    outTreeMC_->Branch(" event", &       event_MC);
@@ -490,7 +490,6 @@ void EventsMC::OutputMC(std::string outname, std::string outdir) {
 
 }
 void EventsMC::initVarsMC() {
-
     run_MC=-1000;
     luminosityBlock_MC=-1000;
     event_MC=-1000;
