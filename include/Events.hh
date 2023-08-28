@@ -146,6 +146,7 @@ public:
     float        BToKEE_kl_massKPi_;
     float        BToKEE_p_assymetry_;
     float        BDTSCORE_1; 
+    float        BDTSCORE_2; 
 
 
     TFile* outFile_=nullptr;

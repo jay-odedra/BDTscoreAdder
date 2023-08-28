@@ -203,7 +203,10 @@ public:
    float        recoB_lKDr_MC;
    float        recoB_k_opp_l_mass_MC;
    float        recoB_p_assymetry_MC;
+
+   float        trig_wgt_MC; 
    float        BDTSCORE_1_MC;
+   float        BDTSCORE_2_MC; 
 
    TFile* outFileMC_=nullptr;
    TTree* outTreeMC_=nullptr;

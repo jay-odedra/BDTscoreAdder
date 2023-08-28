@@ -104,10 +104,18 @@ void EventsMC::LoopMC(std::string outname, std::string outdir)
    Long64_t nbytes = 0, nb = 0;
    OutputMC(outname,outdir);
    //initialize bdt
-   fastforest::FastForest bdt1;
-   std::string modellocation = "./models/XGB_89_1.txt";
-   std::vector<std::string> features{"SkimBToKEE_fit_pt","SkimBToKEE_fit_eta","SkimBToKEE_fit_phi","SkimBToKEE_D0_mass_LepToK_KToPi","SkimBToKEE_D0_mass_LepToPi_KToK","SkimBToKEE_fit_cos2D","SkimBToKEE_svprob","SkimBToKEE_b_iso04","SkimBToKEE_fit_k_pt","SkimBToKEE_fit_k_eta","SkimBToKEE_fit_k_phi","SkimBToKEE_fit_l1_pt","SkimBToKEE_fit_l1_eta","SkimBToKEE_fit_l1_phi","SkimBToKEE_fit_l2_pt","SkimBToKEE_fit_l2_eta","SkimBToKEE_fit_l2_phi","SkimBToKEE_l1_iso04","SkimBToKEE_l2_iso04","SkimBToKEE_k_iso04","SkimBToKEE_l1_PFMvaID_Fall17","SkimBToKEE_l2_PFMvaID_Fall17","SkimBToKEE_l1_PFMvaID_retrained","SkimBToKEE_l2_PFMvaID_retrained","SkimBToKEE_l1_iso04_dca","SkimBToKEE_l2_iso04_dca","SkimBToKEE_b_iso04_dca","SkimBToKEE_k_iso04_dca","SkimBToKEE_l1_n_isotrk_dca","SkimBToKEE_l2_n_isotrk_dca","SkimBToKEE_k_n_isotrk_dca","SkimBToKEE_l_xy_sig","SkimBToKEE_l1l2Dz","SkimBToKEE_lKDz","SkimBToKEE_l1l2Dr","SkimBToKEE_p_assymetry","SkimBToKEE_k_svip3d_sig","SkimBToKEE_fit_pt_over_mass","SkimBToKEE_fit_l1_pt_over_mass","SkimBToKEE_fit_l2_pt_over_mass","SkimBToKEE_fit_k_pt_over_mass"};
-   LoadBDT(bdt1,modellocation,features); 
+   fastforest::FastForest bdt1,bdt2;
+
+   std::string modellocation1 = "./models/XGB_89_1.txt";
+   std::string modellocation2 = "./models/finaloutputwithbdtwithtrg.txt";
+
+
+   std::vector<std::string> features1{"SkimBToKEE_fit_pt","SkimBToKEE_fit_eta","SkimBToKEE_fit_phi","SkimBToKEE_D0_mass_LepToK_KToPi","SkimBToKEE_D0_mass_LepToPi_KToK","SkimBToKEE_fit_cos2D","SkimBToKEE_svprob","SkimBToKEE_b_iso04","SkimBToKEE_fit_k_pt","SkimBToKEE_fit_k_eta","SkimBToKEE_fit_k_phi","SkimBToKEE_fit_l1_pt","SkimBToKEE_fit_l1_eta","SkimBToKEE_fit_l1_phi","SkimBToKEE_fit_l2_pt","SkimBToKEE_fit_l2_eta","SkimBToKEE_fit_l2_phi","SkimBToKEE_l1_iso04","SkimBToKEE_l2_iso04","SkimBToKEE_k_iso04","SkimBToKEE_l1_PFMvaID_Fall17","SkimBToKEE_l2_PFMvaID_Fall17","SkimBToKEE_l1_PFMvaID_retrained","SkimBToKEE_l2_PFMvaID_retrained","SkimBToKEE_l1_iso04_dca","SkimBToKEE_l2_iso04_dca","SkimBToKEE_b_iso04_dca","SkimBToKEE_k_iso04_dca","SkimBToKEE_l1_n_isotrk_dca","SkimBToKEE_l2_n_isotrk_dca","SkimBToKEE_k_n_isotrk_dca","SkimBToKEE_l_xy_sig","SkimBToKEE_l1l2Dz","SkimBToKEE_lKDz","SkimBToKEE_l1l2Dr","SkimBToKEE_p_assymetry","SkimBToKEE_k_svip3d_sig","SkimBToKEE_fit_pt_over_mass","SkimBToKEE_fit_l1_pt_over_mass","SkimBToKEE_fit_l2_pt_over_mass","SkimBToKEE_fit_k_pt_over_mass"};
+   std::vector<std::string> features2{"BToKEE_l1_PFMvaID_retrained", "BToKEE_l2_PFMvaID_retrained", "BToKEE_fit_pt", "BToKEE_fit_l2_pt"};
+
+   LoadBDT(bdt1,modellocation1,features1);
+   LoadBDT(bdt2,modellocation2,features2); 
+ 
    int interval = 1000;
    auto start = std::chrono::system_clock::now();
 
@@ -302,7 +310,7 @@ void EventsMC::LoopMC(std::string outname, std::string outdir)
       recoB_lKDr_MC = recoB_lKDr;
       recoB_k_opp_l_mass_MC = recoB_k_opp_l_mass;      
       recoB_p_assymetry_MC = recoB_p_assymetry; 
-      
+      trig_wgt_MC = trig_wgt;
       float k_svip3d_sig_MC = recoB_k_svip3d_MC/recoB_k_svip3d_err_MC;
       float fit_pt_over_mass_MC = recoB_fit_pt_MC/recoB_fit_mass_MC;
       float fit_pt_l1_over_mass_MC = recoB_fit_l1_pt_MC/recoB_fit_mass_MC;
@@ -310,7 +318,7 @@ void EventsMC::LoopMC(std::string outname, std::string outdir)
       float fit_pt_k_over_mass_MC = recoB_fit_k_pt_MC/recoB_fit_mass_MC;
 
 
-      std::vector<float> input{recoB_fit_pt_MC,recoB_fit_eta_MC,recoB_fit_phi_MC,
+      std::vector<float> input1{recoB_fit_pt_MC,recoB_fit_eta_MC,recoB_fit_phi_MC,
           recoB_D0_mass_LepToK_KToPi_MC,recoB_D0_mass_LepToPi_KToK_MC,recoB_fit_cos2D_MC,
           recoB_svprob_MC,recoB_b_iso04_MC,recoB_fit_k_pt_MC,recoB_fit_k_eta_MC,
           recoB_fit_k_phi_MC,recoB_fit_l1_pt_MC,recoB_fit_l1_eta_MC,recoB_fit_l1_phi_MC,
@@ -321,19 +329,29 @@ void EventsMC::LoopMC(std::string outname, std::string outdir)
           recoB_l2_n_isotrk_dca_MC,recoB_k_n_isotrk_dca_MC,recoB_l_xy_sig_MC,recoB_l1l2Dz_MC,
           recoB_lKDz_MC,recoB_l1l2Dr_MC,recoB_p_assymetry_MC,k_svip3d_sig_MC,
           fit_pt_over_mass_MC,fit_pt_l1_over_mass_MC,fit_pt_l2_over_mass_MC,fit_pt_k_over_mass_MC};
-      BDTSCORE_1_MC = bdt1(input.data());     
+
+      std::vector<float> input2{recoB_l1_PFMvaID_retrained_MC,recoB_l2_PFMvaID_retrained_MC,recoB_fit_pt_MC,recoB_fit_l2_pt_MC};
+
+
+      //BDTSCORE_1_MC = bdt1(input1.data());     
+      BDTSCORE_2_MC = bdt2(input2.data());
+      if (BDTSCORE_2_MC<-2.934286){
+//            initVars();
+            continue;
+      }
       //std::cout<<HLT_DoubleEle10_eta1p22_mMax6_<<std::endl;
       outTreeMC_->Fill();     
-      initVarsMC();
       nb = fChain->GetEntry(jentry);   nbytes += nb;
    }
+   initVarsMC();
+
    outFileMC_->Write();
    outFileMC_->Close();
 }
 void EventsMC::OutputMC(std::string outname, std::string outdir) {
    TString outputfilename(std::string(outdir)+"/"+std::string(outname)+"_MC_.root");
    outFileMC_ = new TFile(outputfilename,"RECREATE");
-   outTreeMC_ = new TTree("EVents","EVents");
+   outTreeMC_ = new TTree("Events","Events");
    outTreeMC_->Branch("run", &run_MC);
    outTreeMC_->Branch("luminosityBlock", &luminosityBlock_MC);
    outTreeMC_->Branch(" event", &       event_MC);
@@ -374,14 +392,14 @@ void EventsMC::OutputMC(std::string outname, std::string outdir) {
    outTreeMC_->Branch("L1_DoubleEG4_er1p2_dR_Max0p9", &L1_DoubleEG4_er1p2_dR_Max0p9_MC);
    outTreeMC_->Branch("nTrigObj", &nTrigObj_MC);
    outTreeMC_->Branch("nOtherPV", &nOtherPV_MC);
-   outTreeMC_->Branch("  PV_ndof", &  PV_ndof_MC);
-   outTreeMC_->Branch("  PV_x", &  PV_x_MC);
-   outTreeMC_->Branch("  PV_y", &  PV_y_MC);
-   outTreeMC_->Branch("  PV_z", &  PV_z_MC);
-   outTreeMC_->Branch("  PV_chi2", &  PV_chi2_MC);
-   outTreeMC_->Branch("  PV_score", &  PV_score_MC);
-   outTreeMC_->Branch(" PV_npvs", & PV_npvs_MC);
-   outTreeMC_->Branch(" PV_npvsGood", & PV_npvsGood_MC);
+   outTreeMC_->Branch("PV_ndof", &PV_ndof_MC);
+   outTreeMC_->Branch("PV_x", &PV_x_MC);
+   outTreeMC_->Branch("PV_y", &PV_y_MC);
+   outTreeMC_->Branch("PV_z", &PV_z_MC);
+   outTreeMC_->Branch("PV_chi2", &PV_chi2_MC);
+   outTreeMC_->Branch("PV_score", &PV_score_MC);
+   outTreeMC_->Branch("PV_npvs", &PV_npvs_MC);
+   outTreeMC_->Branch("PV_npvsGood", &PV_npvsGood_MC);
    outTreeMC_->Branch("nSV", &nSV_MC);
    outTreeMC_->Branch("genB_pdgId", &genB_pdgId_MC );
    outTreeMC_->Branch("genE1_pdgId", &genE1_pdgId_MC);
@@ -486,7 +504,9 @@ void EventsMC::OutputMC(std::string outname, std::string outdir) {
    outTreeMC_->Branch("BToKEE_lKDr", &recoB_lKDr_MC);
    outTreeMC_->Branch("BToKEE_kl_massKPi", &recoB_k_opp_l_mass_MC);
    outTreeMC_->Branch("BToKEE_p_assymetry", &recoB_p_assymetry_MC);
-   outTreeMC_->Branch("BDTSCORE_1", &BDTSCORE_1_MC);
+   outTreeMC_->Branch("trig_wgt", &trig_wgt_MC);
+   //outTreeMC_->Branch("BDTSCORE_1", &BDTSCORE_1_MC);
+   outTree_->Branch("Presel_BDT", &BDTSCORE_2);
 
 }
 void EventsMC::initVarsMC() {
@@ -675,7 +695,10 @@ void EventsMC::initVarsMC() {
     recoB_lKDr_MC=-1000.;
     recoB_k_opp_l_mass_MC=-1000.;
     recoB_p_assymetry_MC=-1000.;
+    trig_wgt_MC=-1000.;
     BDTSCORE_1_MC=-1000.;
+    BDTSCORE_2_MC=-1000.;
+
 }
 
 int main(int argc, char* argv[]){

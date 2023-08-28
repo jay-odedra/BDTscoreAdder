@@ -141,62 +141,62 @@ public :
    Float_t         recoK_isMatchedToMuon;
    Float_t         recoK_charge;
    UInt_t          npreSkimBToKEE;
-   Double_t        preSkimBToKEE_fit_pt[302];   //[npreSkimBToKEE]
-   Double_t        preSkimBToKEE_fit_eta[302];   //[npreSkimBToKEE]
-   Double_t        preSkimBToKEE_fit_phi[302];   //[npreSkimBToKEE]
-   Double_t        preSkimBToKEE_D0_mass_LepToK_KToPi[302];   //[npreSkimBToKEE]
-   Double_t        preSkimBToKEE_D0_mass_LepToPi_KToK[302];   //[npreSkimBToKEE]
-   Double_t        preSkimBToKEE_fit_mass[302];   //[npreSkimBToKEE]
-   Double_t        preSkimBToKEE_l_xy[302];   //[npreSkimBToKEE]
-   Double_t        preSkimBToKEE_l_xy_unc[302];   //[npreSkimBToKEE]
-   Double_t        preSkimBToKEE_fit_cos2D[302];   //[npreSkimBToKEE]
-   Double_t        preSkimBToKEE_svprob[302];   //[npreSkimBToKEE]
-   Double_t        preSkimBToKEE_fit_massErr[302];   //[npreSkimBToKEE]
-   Double_t        preSkimBToKEE_b_iso04[302];   //[npreSkimBToKEE]
-   Double_t        preSkimBToKEE_mll_fullfit[302];   //[npreSkimBToKEE]
-   Double_t        preSkimBToKEE_vtx_x[302];   //[npreSkimBToKEE]
-   Double_t        preSkimBToKEE_vtx_y[302];   //[npreSkimBToKEE]
-   Double_t        preSkimBToKEE_vtx_z[302];   //[npreSkimBToKEE]
-   Double_t        preSkimBToKEE_l1Idx[302];   //[npreSkimBToKEE]
-   Double_t        preSkimBToKEE_l2Idx[302];   //[npreSkimBToKEE]
-   Double_t        preSkimBToKEE_kIdx[302];   //[npreSkimBToKEE]
-   Double_t        preSkimBToKEE_fit_k_pt[302];   //[npreSkimBToKEE]
-   Double_t        preSkimBToKEE_fit_k_eta[302];   //[npreSkimBToKEE]
-   Double_t        preSkimBToKEE_fit_k_phi[302];   //[npreSkimBToKEE]
-   Double_t        preSkimBToKEE_fit_l1_pt[302];   //[npreSkimBToKEE]
-   Double_t        preSkimBToKEE_fit_l1_eta[302];   //[npreSkimBToKEE]
-   Double_t        preSkimBToKEE_fit_l1_phi[302];   //[npreSkimBToKEE]
-   Double_t        preSkimBToKEE_fit_l2_pt[302];   //[npreSkimBToKEE]
-   Double_t        preSkimBToKEE_fit_l2_eta[302];   //[npreSkimBToKEE]
-   Double_t        preSkimBToKEE_fit_l2_phi[302];   //[npreSkimBToKEE]
-   Double_t        preSkimBToKEE_l1_iso04[302];   //[npreSkimBToKEE]
-   Double_t        preSkimBToKEE_l2_iso04[302];   //[npreSkimBToKEE]
-   Double_t        preSkimBToKEE_l1_isPF[302];   //[npreSkimBToKEE]
-   Double_t        preSkimBToKEE_l2_isPF[302];   //[npreSkimBToKEE]
-   Double_t        preSkimBToKEE_k_iso04[302];   //[npreSkimBToKEE]
-   Double_t        preSkimBToKEE_l1_isPFoverlap[302];   //[npreSkimBToKEE]
-   Double_t        preSkimBToKEE_l2_isPFoverlap[302];   //[npreSkimBToKEE]
-   Double_t        preSkimBToKEE_l1_LooseId[302];   //[npreSkimBToKEE]
-   Double_t        preSkimBToKEE_l2_LooseId[302];   //[npreSkimBToKEE]
-   Double_t        preSkimBToKEE_l1_MediumId[302];   //[npreSkimBToKEE]
-   Double_t        preSkimBToKEE_l2_MediumId[302];   //[npreSkimBToKEE]
-   Double_t        preSkimBToKEE_l1_TightId[302];   //[npreSkimBToKEE]
-   Double_t        preSkimBToKEE_l2_TightId[302];   //[npreSkimBToKEE]
-   Double_t        preSkimBToKEE_l1_ConvVeto[302];   //[npreSkimBToKEE]
-   Double_t        preSkimBToKEE_l2_ConvVeto[302];   //[npreSkimBToKEE]
-   Double_t        preSkimBToKEE_l1_PFMvaID_Fall17[302];   //[npreSkimBToKEE]
-   Double_t        preSkimBToKEE_l2_PFMvaID_Fall17[302];   //[npreSkimBToKEE]
-   Double_t        preSkimBToKEE_l1_PFMvaID_retrained[302];   //[npreSkimBToKEE]
-   Double_t        preSkimBToKEE_l2_PFMvaID_retrained[302];   //[npreSkimBToKEE]
-   Double_t        preSkimBToKEE_l1_iso04_dca[302];   //[npreSkimBToKEE]
-   Double_t        preSkimBToKEE_l2_iso04_dca[302];   //[npreSkimBToKEE]
-   Double_t        preSkimBToKEE_b_iso04_dca[302];   //[npreSkimBToKEE]
-   Double_t        preSkimBToKEE_k_iso04_dca[302];   //[npreSkimBToKEE]
-   Double_t        preSkimBToKEE_k_svip3d[302];   //[npreSkimBToKEE]
-   Double_t        preSkimBToKEE_k_svip3d_err[302];   //[npreSkimBToKEE]
-   Double_t        preSkimBToKEE_l1_n_isotrk_dca[302];   //[npreSkimBToKEE]
-   Double_t        preSkimBToKEE_l2_n_isotrk_dca[302];   //[npreSkimBToKEE]
-   Double_t        preSkimBToKEE_k_n_isotrk_dca[302];   //[npreSkimBToKEE]
+   Double_t        preSkimBToKEE_fit_pt[4000];   //[npreSkimBToKEE]
+   Double_t        preSkimBToKEE_fit_eta[4000];   //[npreSkimBToKEE]
+   Double_t        preSkimBToKEE_fit_phi[4000];   //[npreSkimBToKEE]
+   Double_t        preSkimBToKEE_D0_mass_LepToK_KToPi[4000];   //[npreSkimBToKEE]
+   Double_t        preSkimBToKEE_D0_mass_LepToPi_KToK[4000];   //[npreSkimBToKEE]
+   Double_t        preSkimBToKEE_fit_mass[4000];   //[npreSkimBToKEE]
+   Double_t        preSkimBToKEE_l_xy[4000];   //[npreSkimBToKEE]
+   Double_t        preSkimBToKEE_l_xy_unc[4000];   //[npreSkimBToKEE]
+   Double_t        preSkimBToKEE_fit_cos2D[4000];   //[npreSkimBToKEE]
+   Double_t        preSkimBToKEE_svprob[4000];   //[npreSkimBToKEE]
+   Double_t        preSkimBToKEE_fit_massErr[4000];   //[npreSkimBToKEE]
+   Double_t        preSkimBToKEE_b_iso04[4000];   //[npreSkimBToKEE]
+   Double_t        preSkimBToKEE_mll_fullfit[4000];   //[npreSkimBToKEE]
+   Double_t        preSkimBToKEE_vtx_x[4000];   //[npreSkimBToKEE]
+   Double_t        preSkimBToKEE_vtx_y[4000];   //[npreSkimBToKEE]
+   Double_t        preSkimBToKEE_vtx_z[4000];   //[npreSkimBToKEE]
+   Double_t        preSkimBToKEE_l1Idx[4000];   //[npreSkimBToKEE]
+   Double_t        preSkimBToKEE_l2Idx[4000];   //[npreSkimBToKEE]
+   Double_t        preSkimBToKEE_kIdx[4000];   //[npreSkimBToKEE]
+   Double_t        preSkimBToKEE_fit_k_pt[4000];   //[npreSkimBToKEE]
+   Double_t        preSkimBToKEE_fit_k_eta[4000];   //[npreSkimBToKEE]
+   Double_t        preSkimBToKEE_fit_k_phi[4000];   //[npreSkimBToKEE]
+   Double_t        preSkimBToKEE_fit_l1_pt[4000];   //[npreSkimBToKEE]
+   Double_t        preSkimBToKEE_fit_l1_eta[4000];   //[npreSkimBToKEE]
+   Double_t        preSkimBToKEE_fit_l1_phi[4000];   //[npreSkimBToKEE]
+   Double_t        preSkimBToKEE_fit_l2_pt[4000];   //[npreSkimBToKEE]
+   Double_t        preSkimBToKEE_fit_l2_eta[4000];   //[npreSkimBToKEE]
+   Double_t        preSkimBToKEE_fit_l2_phi[4000];   //[npreSkimBToKEE]
+   Double_t        preSkimBToKEE_l1_iso04[4000];   //[npreSkimBToKEE]
+   Double_t        preSkimBToKEE_l2_iso04[4000];   //[npreSkimBToKEE]
+   Double_t        preSkimBToKEE_l1_isPF[4000];   //[npreSkimBToKEE]
+   Double_t        preSkimBToKEE_l2_isPF[4000];   //[npreSkimBToKEE]
+   Double_t        preSkimBToKEE_k_iso04[4000];   //[npreSkimBToKEE]
+   Double_t        preSkimBToKEE_l1_isPFoverlap[4000];   //[npreSkimBToKEE]
+   Double_t        preSkimBToKEE_l2_isPFoverlap[4000];   //[npreSkimBToKEE]
+   Double_t        preSkimBToKEE_l1_LooseId[4000];   //[npreSkimBToKEE]
+   Double_t        preSkimBToKEE_l2_LooseId[4000];   //[npreSkimBToKEE]
+   Double_t        preSkimBToKEE_l1_MediumId[4000];   //[npreSkimBToKEE]
+   Double_t        preSkimBToKEE_l2_MediumId[4000];   //[npreSkimBToKEE]
+   Double_t        preSkimBToKEE_l1_TightId[4000];   //[npreSkimBToKEE]
+   Double_t        preSkimBToKEE_l2_TightId[4000];   //[npreSkimBToKEE]
+   Double_t        preSkimBToKEE_l1_ConvVeto[4000];   //[npreSkimBToKEE]
+   Double_t        preSkimBToKEE_l2_ConvVeto[4000];   //[npreSkimBToKEE]
+   Double_t        preSkimBToKEE_l1_PFMvaID_Fall17[4000];   //[npreSkimBToKEE]
+   Double_t        preSkimBToKEE_l2_PFMvaID_Fall17[4000];   //[npreSkimBToKEE]
+   Double_t        preSkimBToKEE_l1_PFMvaID_retrained[4000];   //[npreSkimBToKEE]
+   Double_t        preSkimBToKEE_l2_PFMvaID_retrained[4000];   //[npreSkimBToKEE]
+   Double_t        preSkimBToKEE_l1_iso04_dca[4000];   //[npreSkimBToKEE]
+   Double_t        preSkimBToKEE_l2_iso04_dca[4000];   //[npreSkimBToKEE]
+   Double_t        preSkimBToKEE_b_iso04_dca[4000];   //[npreSkimBToKEE]
+   Double_t        preSkimBToKEE_k_iso04_dca[4000];   //[npreSkimBToKEE]
+   Double_t        preSkimBToKEE_k_svip3d[4000];   //[npreSkimBToKEE]
+   Double_t        preSkimBToKEE_k_svip3d_err[4000];   //[npreSkimBToKEE]
+   Double_t        preSkimBToKEE_l1_n_isotrk_dca[4000];   //[npreSkimBToKEE]
+   Double_t        preSkimBToKEE_l2_n_isotrk_dca[4000];   //[npreSkimBToKEE]
+   Double_t        preSkimBToKEE_k_n_isotrk_dca[4000];   //[npreSkimBToKEE]
    Float_t         recoB_fit_pt;
    Float_t         recoB_fit_eta;
    Float_t         recoB_fit_phi;
@@ -261,7 +261,7 @@ public :
    Float_t         recoB_lKDr;
    Float_t         recoB_k_opp_l_mass;
    Float_t         recoB_p_assymetry;
-
+   Float_t         trig_wgt;
    // List of branches
    TBranch        *b_run;   //!
    TBranch        *b_luminosityBlock;   //!
@@ -504,7 +504,7 @@ public :
    TBranch        *b_recoB_lKDr;   //!
    TBranch        *b_recoB_k_opp_l_mass;   //!
    TBranch        *b_recoB_p_assymetry;   //!
-
+   TBranch        *b_trig_wgt;
    EventsBaseMC(TTree *tree=0);
    virtual ~EventsBaseMC();
    virtual Int_t    Cut(Long64_t entry);
@@ -830,6 +830,8 @@ void EventsBaseMC::Init(TTree *tree)
    fChain->SetBranchAddress("recoB_lKDr", &recoB_lKDr, &b_recoB_lKDr);
    fChain->SetBranchAddress("recoB_k_opp_l_mass", &recoB_k_opp_l_mass, &b_recoB_k_opp_l_mass);
    fChain->SetBranchAddress("recoB_p_assymetry", &recoB_p_assymetry, &b_recoB_p_assymetry);
+   fChain->SetBranchAddress("trig_wgt", &trig_wgt, &b_trig_wgt);
+
    Notify();
 }
 
