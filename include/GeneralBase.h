@@ -23,13 +23,10 @@ public :
    // Declaration of leaf types
    Int_t           run;
    Int_t           luminosityBlock;
-   Long64_t         event;
+   Long64_t        event;
    Int_t           bunchCrossing;
    Int_t           nBToKEE;
    Int_t           nElectron;
-   Int_t           nGenPart;
-   Float_t         genWeight;
-   Int_t           nPSWeight;
    Int_t           nProbeTracks;
    Bool_t          HLT_DoubleEle10_eta1p22_mMax6;
    Bool_t          HLT_DoubleEle9p5_eta1p22_mMax6;
@@ -45,7 +42,7 @@ public :
    Bool_t          HLT_DoubleEle4p5_eta1p22_mMax6;
    Bool_t          HLT_DoubleEle4_eta1p22_mMax6;
    Bool_t          L1_DoubleEG11_er1p2_dR_Max0p6;
-   Bool_t          L1_DoubleEG10p5_er1p2_dR_Max0p6;
+   UChar_t         L1_DoubleEG10p5_er1p2_dR_Max0p6;
    Bool_t          L1_DoubleEG10_er1p2_dR_Max0p6;
    Bool_t          L1_DoubleEG9p5_er1p2_dR_Max0p6;
    Bool_t          L1_DoubleEG9_er1p2_dR_Max0p7;
@@ -59,41 +56,33 @@ public :
    Bool_t          L1_DoubleEG5_er1p2_dR_Max0p9;
    Bool_t          L1_DoubleEG4p5_er1p2_dR_Max0p9;
    Bool_t          L1_DoubleEG4_er1p2_dR_Max0p9;
+   Bool_t          L1_4p5_HLT_4p0;
+   Bool_t          L1_5p0_HLT_4p0;
+   Bool_t          L1_5p5_HLT_4p0;
+   Bool_t          L1_5p5_HLT_6p0;
+   Bool_t          L1_6p0_HLT_4p0;
+   Bool_t          L1_6p5_HLT_4p5;
+   Bool_t          L1_7p0_HLT_5p0;
+   Bool_t          L1_7p5_HLT_5p0;
+   Bool_t          L1_8p0_HLT_5p0;
+   Bool_t          L1_8p5_HLT_5p0;
+   Bool_t          L1_8p5_HLT_5p5;
+   Bool_t          L1_9p0_HLT_6p0;
+   Bool_t          L1_10p5_HLT_5p0;
+   Bool_t          L1_10p5_HLT_6p5;
+   Bool_t          L1_11p0_HLT_6p5;
+   Bool_t          trigger_OR;
    Int_t           nTrigObj;
    Int_t           nOtherPV;
-   Float_t           PV_ndof;
-   Float_t           PV_x;
-   Float_t           PV_y;
-   Float_t           PV_z;
-   Float_t           PV_chi2;
-   Float_t           PV_score;
-   Int_t            PV_npvs;
-   Int_t            PV_npvsGood;
+   Float_t         PV_ndof;
+   Float_t         PV_x;
+   Float_t         PV_y;
+   Float_t         PV_z;
+   Float_t         PV_chi2;
+   Float_t         PV_score;
+   Int_t           PV_npvs;
+   Int_t           PV_npvsGood;
    Int_t           nSV;
-   Float_t         genB_pdgId;
-   Float_t         genE1_pdgId;
-   Float_t         genE2_pdgId;
-   Float_t         genK_pdgId ;
-   Float_t         genB_pt ;
-   Float_t         genE1_pt;
-   Float_t         genE2_pt;
-   Float_t         genK_pt;
-   Float_t         genB_eta ;
-   Float_t         genE1_eta;
-   Float_t         genE2_eta;
-   Float_t         genK_eta ;
-   Float_t         genB_phi ;
-   Float_t         genE1_phi;
-   Float_t         genE2_phi;
-   Float_t         genK_phi ;
-   Float_t         genB_mass;
-   Float_t         genE1_mass;
-   Float_t         genE2_mass;
-   Float_t         genK_mass ;
-   Float_t         genB_charge ;
-   Float_t         genE1_charge;
-   Float_t         genE2_charge;
-   Float_t         genK_charge;
    Int_t           nSkimBToKEE;
    Float_t         BToKEE_fit_pt;
    Float_t         BToKEE_fit_eta;
@@ -165,6 +154,7 @@ public :
    Float_t         BToKEE_k_dca_sig;
    Float_t         BToKEE_k_dz;
    Float_t         BToKEE_kMu_matched;
+   Float_t         BToKEE_k_charge;
    Float_t         BToKEE_l_xy_sig;
    Float_t         BToKEE_l1l2Dz;
    Float_t         BToKEE_lKDz;
@@ -172,7 +162,20 @@ public :
    Float_t         BToKEE_lKDr;
    Float_t         BToKEE_kl_massKPi;
    Float_t         BToKEE_p_assymetry;
-   Float_t         BDTSCORE_1;
+   Float_t         Presel_BDT;
+   Float_t         BDTSCORE_noah;
+   Float_t         BDTSCORE_analysis_llkdr;
+   Float_t         BDTSCORE_analysis_llkdr_withlow;
+   Float_t         BDTSCORE_analysis_llkdr_withlow_withnomllcutmc;
+   Float_t         BToKEE_k_svipd2d;
+   Float_t         BToKEE_k_svipd2d_err;
+   Float_t         BToKEE_l1_dzTrg;
+   Float_t         BToKEE_l2_dzTrg;
+   Float_t         BToKEE_l1_dxy;
+   Float_t         BToKEE_l2_dxy;
+   Float_t         BToKEE_l1_dxy_err;
+   Float_t         BToKEE_l2_dxy_err;
+   Float_t         trig_wgt;
 
    // List of branches
    TBranch        *b_run;   //!
@@ -181,9 +184,6 @@ public :
    TBranch        *b_bunchCrossing;   //!
    TBranch        *b_nBToKEE;   //!
    TBranch        *b_nElectron;   //!
-   TBranch        *b_nGenPart;   //!
-   TBranch        *b_genWeight;   //!
-   TBranch        *b_nPSWeight;   //!
    TBranch        *b_nProbeTracks;   //!
    TBranch        *b_HLT_DoubleEle10_eta1p22_mMax6;   //!
    TBranch        *b_HLT_DoubleEle9p5_eta1p22_mMax6;   //!
@@ -213,6 +213,22 @@ public :
    TBranch        *b_L1_DoubleEG5_er1p2_dR_Max0p9;   //!
    TBranch        *b_L1_DoubleEG4p5_er1p2_dR_Max0p9;   //!
    TBranch        *b_L1_DoubleEG4_er1p2_dR_Max0p9;   //!
+   TBranch        *b_L1_4p5_HLT_4p0;   //!
+   TBranch        *b_L1_5p0_HLT_4p0;   //!
+   TBranch        *b_L1_5p5_HLT_4p0;   //!
+   TBranch        *b_L1_5p5_HLT_6p0;   //!
+   TBranch        *b_L1_6p0_HLT_4p0;   //!
+   TBranch        *b_L1_6p5_HLT_4p5;   //!
+   TBranch        *b_L1_7p0_HLT_5p0;   //!
+   TBranch        *b_L1_7p5_HLT_5p0;   //!
+   TBranch        *b_L1_8p0_HLT_5p0;   //!
+   TBranch        *b_L1_8p5_HLT_5p0;   //!
+   TBranch        *b_L1_8p5_HLT_5p5;   //!
+   TBranch        *b_L1_9p0_HLT_6p0;   //!
+   TBranch        *b_L1_10p5_HLT_5p0;   //!
+   TBranch        *b_L1_10p5_HLT_6p5;   //!
+   TBranch        *b_L1_11p0_HLT_6p5;   //!
+   TBranch        *b_trigger_OR;   //!
    TBranch        *b_nTrigObj;   //!
    TBranch        *b_nOtherPV;   //!
    TBranch        *b_PV_ndof;   //!
@@ -224,30 +240,6 @@ public :
    TBranch        *b_PV_npvs;   //!
    TBranch        *b_PV_npvsGood;   //!
    TBranch        *b_nSV;   //!
-   TBranch        *b_genB_pdgId;   //!
-   TBranch        *b_genE1_pdgId;   //!
-   TBranch        *b_genE2_pdgId;   //!
-   TBranch        *b_genK_pdgId ;   //!
-   TBranch        *b_genB_pt ;   //!
-   TBranch        *b_genE1_pt;   //!
-   TBranch        *b_genE2_pt;   //!
-   TBranch        *b_genK_pt;   //!
-   TBranch        *b_genB_eta ;   //!
-   TBranch        *b_genE1_eta;   //!
-   TBranch        *b_genE2_eta;   //!
-   TBranch        *b_genK_eta ;   //!
-   TBranch        *b_genB_phi ;   //!
-   TBranch        *b_genE1_phi;   //!
-   TBranch        *b_genE2_phi;   //!
-   TBranch        *b_genK_phi ;   //!
-   TBranch        *b_genB_mass;   //!
-   TBranch        *b_genE1_mass;   //!
-   TBranch        *b_genE2_mass;   //!
-   TBranch        *b_genK_mass ;   //!
-   TBranch        *b_genB_charge ;   //!
-   TBranch        *b_genE1_charge;   //!
-   TBranch        *b_genE2_charge;   //!
-   TBranch        *b_genK_charge;   //!
    TBranch        *b_nSkimBToKEE;   //!
    TBranch        *b_BToKEE_fit_pt;   //!
    TBranch        *b_BToKEE_fit_eta;   //!
@@ -319,6 +311,7 @@ public :
    TBranch        *b_BToKEE_k_dca_sig;   //!
    TBranch        *b_BToKEE_k_dz;   //!
    TBranch        *b_BToKEE_kMu_matched;   //!
+   TBranch        *b_BToKEE_k_charge;   //!
    TBranch        *b_BToKEE_l_xy_sig;   //!
    TBranch        *b_BToKEE_l1l2Dz;   //!
    TBranch        *b_BToKEE_lKDz;   //!
@@ -326,7 +319,20 @@ public :
    TBranch        *b_BToKEE_lKDr;   //!
    TBranch        *b_BToKEE_kl_massKPi;   //!
    TBranch        *b_BToKEE_p_assymetry;   //!
-   TBranch        *b_BDTSCORE_1;   //!
+   TBranch        *b_Presel_BDT;   //!
+   TBranch        *b_BDTSCORE_noah;   //!
+   TBranch        *b_BDTSCORE_analysis_llkdr;   //!
+   TBranch        *b_BDTSCORE_analysis_llkdr_withlow;   //!
+   TBranch        *b_BDTSCORE_analysis_llkdr_withlow_withnomllcutmc;   //!
+   TBranch        *b_BToKEE_k_svipd2d;   //!
+   TBranch        *b_BToKEE_k_svipd2d_err;   //!
+   TBranch        *b_BToKEE_l1_dzTrg;   //!
+   TBranch        *b_BToKEE_l2_dzTrg;   //!
+   TBranch        *b_BToKEE_l1_dxy;   //!
+   TBranch        *b_BToKEE_l2_dxy;   //!
+   TBranch        *b_BToKEE_l1_dxy_err;   //!
+   TBranch        *b_BToKEE_l2_dxy_err;   //!
+   TBranch        *b_trig_wgt;   //!
 
    GeneralBase(TTree *tree=0);
    virtual ~GeneralBase();
@@ -413,13 +419,10 @@ void GeneralBase::Init(TTree *tree)
 
    fChain->SetBranchAddress("run", &run, &b_run);
    fChain->SetBranchAddress("luminosityBlock", &luminosityBlock, &b_luminosityBlock);
-   fChain->SetBranchAddress(" event", & event, &b_event);
+   fChain->SetBranchAddress("event", &event, &b_event);
    fChain->SetBranchAddress("bunchCrossing", &bunchCrossing, &b_bunchCrossing);
    fChain->SetBranchAddress("nBToKEE", &nBToKEE, &b_nBToKEE);
    fChain->SetBranchAddress("nElectron", &nElectron, &b_nElectron);
-   fChain->SetBranchAddress("nGenPart", &nGenPart, &b_nGenPart);
-   fChain->SetBranchAddress("genWeight", &genWeight, &b_genWeight);
-   fChain->SetBranchAddress("nPSWeight", &nPSWeight, &b_nPSWeight);
    fChain->SetBranchAddress("nProbeTracks", &nProbeTracks, &b_nProbeTracks);
    fChain->SetBranchAddress("HLT_DoubleEle10_eta1p22_mMax6", &HLT_DoubleEle10_eta1p22_mMax6, &b_HLT_DoubleEle10_eta1p22_mMax6);
    fChain->SetBranchAddress("HLT_DoubleEle9p5_eta1p22_mMax6", &HLT_DoubleEle9p5_eta1p22_mMax6, &b_HLT_DoubleEle9p5_eta1p22_mMax6);
@@ -449,41 +452,33 @@ void GeneralBase::Init(TTree *tree)
    fChain->SetBranchAddress("L1_DoubleEG5_er1p2_dR_Max0p9", &L1_DoubleEG5_er1p2_dR_Max0p9, &b_L1_DoubleEG5_er1p2_dR_Max0p9);
    fChain->SetBranchAddress("L1_DoubleEG4p5_er1p2_dR_Max0p9", &L1_DoubleEG4p5_er1p2_dR_Max0p9, &b_L1_DoubleEG4p5_er1p2_dR_Max0p9);
    fChain->SetBranchAddress("L1_DoubleEG4_er1p2_dR_Max0p9", &L1_DoubleEG4_er1p2_dR_Max0p9, &b_L1_DoubleEG4_er1p2_dR_Max0p9);
+   fChain->SetBranchAddress("L1_4p5_HLT_4p0", &L1_4p5_HLT_4p0, &b_L1_4p5_HLT_4p0);
+   fChain->SetBranchAddress("L1_5p0_HLT_4p0", &L1_5p0_HLT_4p0, &b_L1_5p0_HLT_4p0);
+   fChain->SetBranchAddress("L1_5p5_HLT_4p0", &L1_5p5_HLT_4p0, &b_L1_5p5_HLT_4p0);
+   fChain->SetBranchAddress("L1_5p5_HLT_6p0", &L1_5p5_HLT_6p0, &b_L1_5p5_HLT_6p0);
+   fChain->SetBranchAddress("L1_6p0_HLT_4p0", &L1_6p0_HLT_4p0, &b_L1_6p0_HLT_4p0);
+   fChain->SetBranchAddress("L1_6p5_HLT_4p5", &L1_6p5_HLT_4p5, &b_L1_6p5_HLT_4p5);
+   fChain->SetBranchAddress("L1_7p0_HLT_5p0", &L1_7p0_HLT_5p0, &b_L1_7p0_HLT_5p0);
+   fChain->SetBranchAddress("L1_7p5_HLT_5p0", &L1_7p5_HLT_5p0, &b_L1_7p5_HLT_5p0);
+   fChain->SetBranchAddress("L1_8p0_HLT_5p0", &L1_8p0_HLT_5p0, &b_L1_8p0_HLT_5p0);
+   fChain->SetBranchAddress("L1_8p5_HLT_5p0", &L1_8p5_HLT_5p0, &b_L1_8p5_HLT_5p0);
+   fChain->SetBranchAddress("L1_8p5_HLT_5p5", &L1_8p5_HLT_5p5, &b_L1_8p5_HLT_5p5);
+   fChain->SetBranchAddress("L1_9p0_HLT_6p0", &L1_9p0_HLT_6p0, &b_L1_9p0_HLT_6p0);
+   fChain->SetBranchAddress("L1_10p5_HLT_5p0", &L1_10p5_HLT_5p0, &b_L1_10p5_HLT_5p0);
+   fChain->SetBranchAddress("L1_10p5_HLT_6p5", &L1_10p5_HLT_6p5, &b_L1_10p5_HLT_6p5);
+   fChain->SetBranchAddress("L1_11p0_HLT_6p5", &L1_11p0_HLT_6p5, &b_L1_11p0_HLT_6p5);
+   fChain->SetBranchAddress("trigger_OR", &trigger_OR, &b_trigger_OR);
    fChain->SetBranchAddress("nTrigObj", &nTrigObj, &b_nTrigObj);
    fChain->SetBranchAddress("nOtherPV", &nOtherPV, &b_nOtherPV);
-   fChain->SetBranchAddress("  PV_ndof", &  PV_ndof, &b_PV_ndof);
-   fChain->SetBranchAddress("  PV_x", &  PV_x, &b_PV_x);
-   fChain->SetBranchAddress("  PV_y", &  PV_y, &b_PV_y);
-   fChain->SetBranchAddress("  PV_z", &  PV_z, &b_PV_z);
-   fChain->SetBranchAddress("  PV_chi2", &  PV_chi2, &b_PV_chi2);
-   fChain->SetBranchAddress("  PV_score", &  PV_score, &b_PV_score);
-   fChain->SetBranchAddress(" PV_npvs", & PV_npvs, &b_PV_npvs);
-   fChain->SetBranchAddress(" PV_npvsGood", & PV_npvsGood, &b_PV_npvsGood);
+   fChain->SetBranchAddress("PV_ndof", &PV_ndof, &b_PV_ndof);
+   fChain->SetBranchAddress("PV_x", &PV_x, &b_PV_x);
+   fChain->SetBranchAddress("PV_y", &PV_y, &b_PV_y);
+   fChain->SetBranchAddress("PV_z", &PV_z, &b_PV_z);
+   fChain->SetBranchAddress("PV_chi2", &PV_chi2, &b_PV_chi2);
+   fChain->SetBranchAddress("PV_score", &PV_score, &b_PV_score);
+   fChain->SetBranchAddress("PV_npvs", &PV_npvs, &b_PV_npvs);
+   fChain->SetBranchAddress("PV_npvsGood", &PV_npvsGood, &b_PV_npvsGood);
    fChain->SetBranchAddress("nSV", &nSV, &b_nSV);
-   fChain->SetBranchAddress("genB_pdgId", &genB_pdgId, &b_genB_pdgId);
-   fChain->SetBranchAddress("genE1_pdgId", &genE1_pdgId, &b_genE1_pdgId);
-   fChain->SetBranchAddress("genE2_pdgId", &genE2_pdgId, &b_genE2_pdgId);
-   fChain->SetBranchAddress("genK_pdgId ", &genK_pdgId , &b_genK_pdgId );
-   fChain->SetBranchAddress("genB_pt ", &genB_pt , &b_genB_pt );
-   fChain->SetBranchAddress("genE1_pt", &genE1_pt, &b_genE1_pt);
-   fChain->SetBranchAddress("genE2_pt", &genE2_pt, &b_genE2_pt);
-   fChain->SetBranchAddress("genK_pt", &genK_pt, &b_genK_pt);
-   fChain->SetBranchAddress("genB_eta ", &genB_eta , &b_genB_eta );
-   fChain->SetBranchAddress("genE1_eta", &genE1_eta, &b_genE1_eta);
-   fChain->SetBranchAddress("genE2_eta", &genE2_eta, &b_genE2_eta);
-   fChain->SetBranchAddress("genK_eta ", &genK_eta , &b_genK_eta );
-   fChain->SetBranchAddress("genB_phi ", &genB_phi , &b_genB_phi );
-   fChain->SetBranchAddress("genE1_phi", &genE1_phi, &b_genE1_phi);
-   fChain->SetBranchAddress("genE2_phi", &genE2_phi, &b_genE2_phi);
-   fChain->SetBranchAddress("genK_phi ", &genK_phi , &b_genK_phi );
-   fChain->SetBranchAddress("genB_mass", &genB_mass, &b_genB_mass);
-   fChain->SetBranchAddress("genE1_mass", &genE1_mass, &b_genE1_mass);
-   fChain->SetBranchAddress("genE2_mass", &genE2_mass, &b_genE2_mass);
-   fChain->SetBranchAddress("genK_mass ", &genK_mass , &b_genK_mass );
-   fChain->SetBranchAddress("genB_charge ", &genB_charge , &b_genB_charge );
-   fChain->SetBranchAddress("genE1_charge", &genE1_charge, &b_genE1_charge);
-   fChain->SetBranchAddress("genE2_charge", &genE2_charge, &b_genE2_charge);
-   fChain->SetBranchAddress("genK_charge", &genK_charge, &b_genK_charge);
    fChain->SetBranchAddress("nSkimBToKEE", &nSkimBToKEE, &b_nSkimBToKEE);
    fChain->SetBranchAddress("BToKEE_fit_pt", &BToKEE_fit_pt, &b_BToKEE_fit_pt);
    fChain->SetBranchAddress("BToKEE_fit_eta", &BToKEE_fit_eta, &b_BToKEE_fit_eta);
@@ -555,6 +550,7 @@ void GeneralBase::Init(TTree *tree)
    fChain->SetBranchAddress("BToKEE_k_dca_sig", &BToKEE_k_dca_sig, &b_BToKEE_k_dca_sig);
    fChain->SetBranchAddress("BToKEE_k_dz", &BToKEE_k_dz, &b_BToKEE_k_dz);
    fChain->SetBranchAddress("BToKEE_kMu_matched", &BToKEE_kMu_matched, &b_BToKEE_kMu_matched);
+   fChain->SetBranchAddress("BToKEE_k_charge", &BToKEE_k_charge, &b_BToKEE_k_charge);
    fChain->SetBranchAddress("BToKEE_l_xy_sig", &BToKEE_l_xy_sig, &b_BToKEE_l_xy_sig);
    fChain->SetBranchAddress("BToKEE_l1l2Dz", &BToKEE_l1l2Dz, &b_BToKEE_l1l2Dz);
    fChain->SetBranchAddress("BToKEE_lKDz", &BToKEE_lKDz, &b_BToKEE_lKDz);
@@ -562,7 +558,22 @@ void GeneralBase::Init(TTree *tree)
    fChain->SetBranchAddress("BToKEE_lKDr", &BToKEE_lKDr, &b_BToKEE_lKDr);
    fChain->SetBranchAddress("BToKEE_kl_massKPi", &BToKEE_kl_massKPi, &b_BToKEE_kl_massKPi);
    fChain->SetBranchAddress("BToKEE_p_assymetry", &BToKEE_p_assymetry, &b_BToKEE_p_assymetry);
-   fChain->SetBranchAddress("BDTSCORE_1", &BDTSCORE_1, &b_BDTSCORE_1);
+   fChain->SetBranchAddress("Presel_BDT", &Presel_BDT, &b_Presel_BDT);
+   fChain->SetBranchAddress("BDTSCORE_noah", &BDTSCORE_noah, &b_BDTSCORE_noah);
+   fChain->SetBranchAddress("BDTSCORE_analysis_llkdr", &BDTSCORE_analysis_llkdr, &b_BDTSCORE_analysis_llkdr);
+   fChain->SetBranchAddress("BDTSCORE_analysis_llkdr_withlow", &BDTSCORE_analysis_llkdr_withlow, &b_BDTSCORE_analysis_llkdr_withlow);
+   fChain->SetBranchAddress("BDTSCORE_analysis_llkdr_withlow_withnomllcutmc", &BDTSCORE_analysis_llkdr_withlow_withnomllcutmc, &b_BDTSCORE_analysis_llkdr_withlow_withnomllcutmc);
+   fChain->SetBranchAddress("BToKEE_k_svipd2d", &BToKEE_k_svipd2d, &b_BToKEE_k_svipd2d);
+   fChain->SetBranchAddress("BToKEE_k_svipd2d_err", &BToKEE_k_svipd2d_err, &b_BToKEE_k_svipd2d_err);
+   fChain->SetBranchAddress("BToKEE_l1_dzTrg", &BToKEE_l1_dzTrg, &b_BToKEE_l1_dzTrg);
+   fChain->SetBranchAddress("BToKEE_l2_dzTrg", &BToKEE_l2_dzTrg, &b_BToKEE_l2_dzTrg);
+   fChain->SetBranchAddress("BToKEE_l1_dxy", &BToKEE_l1_dxy, &b_BToKEE_l1_dxy);
+   fChain->SetBranchAddress("BToKEE_l2_dxy", &BToKEE_l2_dxy, &b_BToKEE_l2_dxy);
+   fChain->SetBranchAddress("BToKEE_l1_dxy_err", &BToKEE_l1_dxy_err, &b_BToKEE_l1_dxy_err);
+   fChain->SetBranchAddress("BToKEE_l2_dxy_err", &BToKEE_l2_dxy_err, &b_BToKEE_l2_dxy_err);   
+   fChain->SetBranchAddress("run", &run, &b_run);
+   fChain->SetBranchAddress("trig_wgt", &trig_wgt, &b_trig_wgt);
+
    Notify();
 }
 
