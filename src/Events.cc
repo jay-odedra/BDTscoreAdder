@@ -104,17 +104,14 @@ void Events::Loop(std::string outname, std::string outdir)
    Long64_t nbytes = 0, nb = 0;
    Output(outname,outdir);
    //initialize bdt
-   fastforest::FastForest bdt1,bdt2;
+   fastforest::FastForest bdt1;
 
-   std::string modellocation1 = "./models/XGB_89_1.txt";
-   std::string modellocation2 = "./models/preselectionbdtwithtrig.txt";
+   std::string modellocation1 = "./models/preselbdt15_10_23.txt";
 
-   std::vector<std::string> features1{"SkimBToKEE_fit_pt","SkimBToKEE_fit_eta","SkimBToKEE_fit_phi","SkimBToKEE_D0_mass_LepToK_KToPi","SkimBToKEE_D0_mass_LepToPi_KToK","SkimBToKEE_fit_cos2D","SkimBToKEE_svprob","SkimBToKEE_b_iso04","SkimBToKEE_fit_k_pt","SkimBToKEE_fit_k_eta","SkimBToKEE_fit_k_phi","SkimBToKEE_fit_l1_pt","SkimBToKEE_fit_l1_eta","SkimBToKEE_fit_l1_phi","SkimBToKEE_fit_l2_pt","SkimBToKEE_fit_l2_eta","SkimBToKEE_fit_l2_phi","SkimBToKEE_l1_iso04","SkimBToKEE_l2_iso04","SkimBToKEE_k_iso04","SkimBToKEE_l1_PFMvaID_Fall17","SkimBToKEE_l2_PFMvaID_Fall17","SkimBToKEE_l1_PFMvaID_retrained","SkimBToKEE_l2_PFMvaID_retrained","SkimBToKEE_l1_iso04_dca","SkimBToKEE_l2_iso04_dca","SkimBToKEE_b_iso04_dca","SkimBToKEE_k_iso04_dca","SkimBToKEE_l1_n_isotrk_dca","SkimBToKEE_l2_n_isotrk_dca","SkimBToKEE_k_n_isotrk_dca","SkimBToKEE_l_xy_sig","SkimBToKEE_l1l2Dz","SkimBToKEE_lKDz","SkimBToKEE_l1l2Dr","SkimBToKEE_p_assymetry","SkimBToKEE_k_svip3d_sig","SkimBToKEE_fit_pt_over_mass","SkimBToKEE_fit_l1_pt_over_mass","SkimBToKEE_fit_l2_pt_over_mass","SkimBToKEE_fit_k_pt_over_mass"};
-   std::vector<std::string> features2{"BToKEE_l1_PFMvaID_retrained", "BToKEE_l2_PFMvaID_retrained", "BToKEE_fit_pt", "BToKEE_fit_l2_pt"};
+   std::vector<std::string> features1{"BToKEE_l1_PFMvaID_retrained", "BToKEE_l2_PFMvaID_retrained", "BToKEE_fit_pt", "BToKEE_fit_l2_pt"};
 
    
    LoadBDT(bdt1,modellocation1,features1); 
-   LoadBDT(bdt2,modellocation2,features2); 
 
    int interval = 10000;
    auto start = std::chrono::system_clock::now();
@@ -259,30 +256,21 @@ void Events::Loop(std::string outname, std::string outdir)
          float BToKEE_fit_l2_pt_over_mass_ = BToKEE_fit_l2_pt_/BToKEE_fit_mass_;
          float BToKEE_fit_k_pt_over_mass_ = BToKEE_fit_k_pt_/BToKEE_fit_mass_;
          
-         //bdt1 inputvector
-         std::vector<float> input1{BToKEE_fit_pt_,BToKEE_fit_eta_,BToKEE_fit_phi_,
-            BToKEE_D0_mass_LepToK_KToPi_,BToKEE_D0_mass_LepToPi_KToK_,BToKEE_fit_cos2D_,
-            BToKEE_svprob_,BToKEE_b_iso04_,BToKEE_fit_k_pt_,BToKEE_fit_k_eta_,
-            BToKEE_fit_k_phi_,BToKEE_fit_l1_pt_,BToKEE_fit_l1_eta_,BToKEE_fit_l1_phi_,
-            BToKEE_fit_l2_pt_,BToKEE_fit_l2_eta_,BToKEE_fit_l2_phi_,BToKEE_l1_iso04_,
-            BToKEE_l2_iso04_,BToKEE_k_iso04_,BToKEE_l1_PFMvaID_Fall17_,BToKEE_l2_PFMvaID_Fall17_,
-            BToKEE_l1_PFMvaID_retrained_,BToKEE_l2_PFMvaID_retrained_,BToKEE_l1_iso04_dca_,
-            BToKEE_l2_iso04_dca_,BToKEE_b_iso04_dca_,BToKEE_k_iso04_dca_,BToKEE_l1_n_isotrk_dca_,
-            BToKEE_l2_n_isotrk_dca_,BToKEE_k_n_isotrk_dca_,BToKEE_l_xy_sig_,BToKEE_l1l2Dz_,
-            BToKEE_lKDz_,BToKEE_l1l2Dr_,BToKEE_p_assymetry_,BToKEE_k_svip3d_sig_,
-            BToKEE_fit_pt_over_mass_,BToKEE_fit_l1_pt_over_mass_,BToKEE_fit_l2_pt_over_mass_,BToKEE_fit_k_pt_over_mass_};
 
-         std::vector<float> input2{BToKEE_l1_PFMvaID_retrained_,BToKEE_l2_PFMvaID_retrained_,BToKEE_fit_pt_,BToKEE_fit_l2_pt_};
+
+         std::vector<float> input1{BToKEE_l1_PFMvaID_retrained_,BToKEE_l2_PFMvaID_retrained_,BToKEE_fit_pt_,BToKEE_fit_l2_pt_};
 
 
 
          //BDTSCORE_1 = bdt1(input1.data());
-         BDTSCORE_2 = bdt2(input2.data());
-         if (BDTSCORE_2<-2.934286){
+         BDTSCORE_1 = bdt1(input1.data());
+         if (BDTSCORE_1<-3.4003663){
 //            initVars();
-            continue;
+            goto end;
          }
-         outTree_->Fill();  
+         outTree_->Fill();
+         end:;
+  
          //initVars();
    
       }
@@ -431,9 +419,7 @@ void Events::Output(std::string outname, std::string outdir) {
    outTree_->Branch("BToKEE_lKDr", &BToKEE_lKDr_);
    outTree_->Branch("BToKEE_kl_massKPi", &BToKEE_kl_massKPi_);
    outTree_->Branch("BToKEE_p_assymetry", &BToKEE_p_assymetry_);
-
-   //outTree_->Branch("BDTSCORE_1", &BDTSCORE_1);
-   outTree_->Branch("Presel_BDT", &BDTSCORE_2);
+   outTree_->Branch("Presel_BDT", &BDTSCORE_1);
 
 
 }
