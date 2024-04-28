@@ -57,6 +57,25 @@ public:
    bool         L1_DoubleEG5_er1p2_dR_Max0p9_MC;
    bool         L1_DoubleEG4p5_er1p2_dR_Max0p9_MC;
    bool         L1_DoubleEG4_er1p2_dR_Max0p9_MC;
+
+   bool         L1_4p5_HLT_4p0_ ;
+   bool         L1_5p0_HLT_4p0_ ;
+   bool         L1_5p5_HLT_4p0_ ;
+   bool         L1_5p5_HLT_6p0_ ;
+   bool         L1_6p0_HLT_4p0_ ;
+   bool         L1_6p5_HLT_4p5_ ;
+   bool         L1_7p0_HLT_5p0_ ;
+   bool         L1_7p5_HLT_5p0_ ;
+   bool         L1_8p0_HLT_5p0_ ;
+   bool         L1_8p5_HLT_5p0_ ;
+   bool         L1_8p5_HLT_5p5_ ;
+   bool         L1_9p0_HLT_6p0_ ;
+   bool         L1_10p5_HLT_5p0_;
+   bool         L1_10p5_HLT_6p5_;
+   bool         L1_11p0_HLT_6p5_;
+   bool         trigger_OR_;
+
+
    int          nTrigObj_MC;
    int          nOtherPV_MC;
    float        PV_ndof_MC;

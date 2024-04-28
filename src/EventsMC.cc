@@ -129,7 +129,7 @@ void EventsMC::LoopMC(std::string outname, std::string outdir)
       genWeight_MC = genWeight;
       nPSWeight_MC = nPSWeight;
       nProbeTracks_MC = nProbeTracks;
-      HLT_DoubleEle10_eta1p22_mMax6_MC = HLT_DoubleEle10_eta1p22_mMax6;
+     HLT_DoubleEle10_eta1p22_mMax6_MC = HLT_DoubleEle10_eta1p22_mMax6;
       HLT_DoubleEle9p5_eta1p22_mMax6_MC = HLT_DoubleEle9p5_eta1p22_mMax6;
       HLT_DoubleEle9_eta1p22_mMax6_MC = HLT_DoubleEle9_eta1p22_mMax6;
       HLT_DoubleEle8p5_eta1p22_mMax6_MC = HLT_DoubleEle8p5_eta1p22_mMax6;
@@ -157,6 +157,25 @@ void EventsMC::LoopMC(std::string outname, std::string outdir)
       L1_DoubleEG5_er1p2_dR_Max0p9_MC = L1_DoubleEG5_er1p2_dR_Max0p9;
       L1_DoubleEG4p5_er1p2_dR_Max0p9_MC = L1_DoubleEG4p5_er1p2_dR_Max0p9;
       L1_DoubleEG4_er1p2_dR_Max0p9_MC = L1_DoubleEG4_er1p2_dR_Max0p9;
+
+      L1_4p5_HLT_4p0_ =  L1_DoubleEG4p5_er1p2_dR_Max0p9_MC*HLT_DoubleEle4_eta1p22_mMax6_MC ; 
+      L1_5p0_HLT_4p0_ =  L1_DoubleEG5_er1p2_dR_Max0p9_MC*HLT_DoubleEle4_eta1p22_mMax6_MC ; 
+      L1_5p5_HLT_4p0_ =  L1_DoubleEG5p5_er1p2_dR_Max0p8_MC*HLT_DoubleEle4_eta1p22_mMax6_MC ; 
+      L1_5p5_HLT_6p0_ =  L1_DoubleEG5p5_er1p2_dR_Max0p8_MC*HLT_DoubleEle6_eta1p22_mMax6_MC ; 
+      L1_6p0_HLT_4p0_ =  L1_DoubleEG6_er1p2_dR_Max0p8_MC*HLT_DoubleEle4_eta1p22_mMax6_MC ; 
+      L1_6p5_HLT_4p5_ =  L1_DoubleEG6p5_er1p2_dR_Max0p8_MC*HLT_DoubleEle4p5_eta1p22_mMax6_MC ; 
+      L1_7p0_HLT_5p0_ =  L1_DoubleEG7_er1p2_dR_Max0p8_MC*HLT_DoubleEle5_eta1p22_mMax6_MC ; 
+      L1_7p5_HLT_5p0_ =  L1_DoubleEG7p5_er1p2_dR_Max0p7_MC*HLT_DoubleEle5_eta1p22_mMax6_MC ; 
+      L1_8p0_HLT_5p0_ =  L1_DoubleEG8_er1p2_dR_Max0p7_MC*HLT_DoubleEle5_eta1p22_mMax6_MC ; 
+      L1_8p5_HLT_5p0_ =  L1_DoubleEG8p5_er1p2_dR_Max0p7_MC*HLT_DoubleEle5_eta1p22_mMax6_MC ; 
+      L1_8p5_HLT_5p5_ =  L1_DoubleEG8p5_er1p2_dR_Max0p7_MC*HLT_DoubleEle5p5_eta1p22_mMax6_MC ; 
+      L1_9p0_HLT_6p0_ =  L1_DoubleEG9_er1p2_dR_Max0p7_MC*HLT_DoubleEle6_eta1p22_mMax6_MC ; 
+      L1_10p5_HLT_5p0_ = L1_DoubleEG10p5_er1p2_dR_Max0p6_MC*HLT_DoubleEle5_eta1p22_mMax6_MC  ;
+      L1_10p5_HLT_6p5_ = L1_DoubleEG10p5_er1p2_dR_Max0p6_MC*HLT_DoubleEle6p5_eta1p22_mMax6_MC  ;
+      L1_11p0_HLT_6p5_ = L1_DoubleEG11_er1p2_dR_Max0p6_MC*HLT_DoubleEle6p5_eta1p22_mMax6_MC  ;
+      if(L1_4p5_HLT_4p0_ || L1_5p0_HLT_4p0_ ||L1_5p5_HLT_4p0_ ||L1_5p5_HLT_6p0_ ||L1_6p0_HLT_4p0_ ||L1_6p5_HLT_4p5_ ||L1_7p0_HLT_5p0_ ||L1_7p5_HLT_5p0_ ||L1_8p0_HLT_5p0_ ||L1_8p5_HLT_5p0_ ||L1_8p5_HLT_5p5_ ||L1_9p0_HLT_6p0_ ||L1_10p5_HLT_5p0_||L1_10p5_HLT_6p5_||L1_11p0_HLT_6p5_){
+        trigger_OR_ = true;
+      }
       nTrigObj_MC = nTrigObj;
       nOtherPV_MC = nOtherPV;
       PV_ndof_MC = PV_ndof;
@@ -374,6 +393,24 @@ void EventsMC::OutputMC(std::string outname, std::string outdir) {
    outTreeMC_->Branch("L1_DoubleEG5_er1p2_dR_Max0p9", &L1_DoubleEG5_er1p2_dR_Max0p9_MC);
    outTreeMC_->Branch("L1_DoubleEG4p5_er1p2_dR_Max0p9", &L1_DoubleEG4p5_er1p2_dR_Max0p9_MC);
    outTreeMC_->Branch("L1_DoubleEG4_er1p2_dR_Max0p9", &L1_DoubleEG4_er1p2_dR_Max0p9_MC);
+
+   outTreeMC_->Branch("L1_4p5_HLT_4p0",&L1_4p5_HLT_4p0_);
+   outTreeMC_->Branch("L1_5p0_HLT_4p0",&L1_5p0_HLT_4p0_);
+   outTreeMC_->Branch("L1_5p5_HLT_4p0",&L1_5p5_HLT_4p0_);
+   outTreeMC_->Branch("L1_5p5_HLT_6p0",&L1_5p5_HLT_6p0_);
+   outTreeMC_->Branch("L1_6p0_HLT_4p0",&L1_6p0_HLT_4p0_);
+   outTreeMC_->Branch("L1_6p5_HLT_4p5",&L1_6p5_HLT_4p5_);
+   outTreeMC_->Branch("L1_7p0_HLT_5p0",&L1_7p0_HLT_5p0_);
+   outTreeMC_->Branch("L1_7p5_HLT_5p0",&L1_7p5_HLT_5p0_);
+   outTreeMC_->Branch("L1_8p0_HLT_5p0",&L1_8p0_HLT_5p0_);
+   outTreeMC_->Branch("L1_8p5_HLT_5p0",&L1_8p5_HLT_5p0_);
+   outTreeMC_->Branch("L1_8p5_HLT_5p5",&L1_8p5_HLT_5p5_);
+   outTreeMC_->Branch("L1_9p0_HLT_6p0",&L1_9p0_HLT_6p0_);
+   outTreeMC_->Branch("L1_10p5_HLT_5p0",&L1_10p5_HLT_5p0_);
+   outTreeMC_->Branch("L1_10p5_HLT_6p5",&L1_10p5_HLT_6p5_);
+   outTreeMC_->Branch("L1_11p0_HLT_6p5",&L1_11p0_HLT_6p5_);
+   outTreeMC_->Branch("trigger_OR",&trigger_OR_);
+
    outTreeMC_->Branch("nTrigObj", &nTrigObj_MC);
    outTreeMC_->Branch("nOtherPV", &nOtherPV_MC);
    outTreeMC_->Branch("PV_ndof", &PV_ndof_MC);
@@ -533,6 +570,27 @@ void EventsMC::initVarsMC() {
     L1_DoubleEG5_er1p2_dR_Max0p9_MC= false;
     L1_DoubleEG4p5_er1p2_dR_Max0p9_MC= false;
     L1_DoubleEG4_er1p2_dR_Max0p9_MC= false;
+
+
+
+
+    L1_4p5_HLT_4p0_ = false;
+    L1_5p0_HLT_4p0_ = false;
+    L1_5p5_HLT_4p0_ = false;
+    L1_5p5_HLT_6p0_ = false;
+    L1_6p0_HLT_4p0_ = false;
+    L1_6p5_HLT_4p5_ = false;
+    L1_7p0_HLT_5p0_ = false;
+    L1_7p5_HLT_5p0_ = false;
+    L1_8p0_HLT_5p0_ = false;
+    L1_8p5_HLT_5p0_ = false;
+    L1_8p5_HLT_5p5_ = false;
+    L1_9p0_HLT_6p0_ = false;
+    L1_10p5_HLT_5p0_= false;
+    L1_10p5_HLT_6p5_= false;
+    L1_11p0_HLT_6p5_= false;
+    trigger_OR_     = false;
+    
     nTrigObj_MC=-1000;
     nOtherPV_MC=-1000;
     PV_ndof_MC=-1000.;
