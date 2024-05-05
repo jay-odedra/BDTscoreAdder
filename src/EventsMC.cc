@@ -173,6 +173,7 @@ void EventsMC::LoopMC(std::string outname, std::string outdir)
       L1_10p5_HLT_5p0_ = L1_DoubleEG10p5_er1p2_dR_Max0p6_MC*HLT_DoubleEle5_eta1p22_mMax6_MC  ;
       L1_10p5_HLT_6p5_ = L1_DoubleEG10p5_er1p2_dR_Max0p6_MC*HLT_DoubleEle6p5_eta1p22_mMax6_MC  ;
       L1_11p0_HLT_6p5_ = L1_DoubleEG11_er1p2_dR_Max0p6_MC*HLT_DoubleEle6p5_eta1p22_mMax6_MC  ;
+      trigger_OR_ = false;
       if(L1_4p5_HLT_4p0_ || L1_5p0_HLT_4p0_ ||L1_5p5_HLT_4p0_ ||L1_5p5_HLT_6p0_ ||L1_6p0_HLT_4p0_ ||L1_6p5_HLT_4p5_ ||L1_7p0_HLT_5p0_ ||L1_7p5_HLT_5p0_ ||L1_8p0_HLT_5p0_ ||L1_8p5_HLT_5p0_ ||L1_8p5_HLT_5p5_ ||L1_9p0_HLT_6p0_ ||L1_10p5_HLT_5p0_||L1_10p5_HLT_6p5_||L1_11p0_HLT_6p5_){
         trigger_OR_ = true;
       }
