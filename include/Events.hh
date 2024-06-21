@@ -148,6 +148,24 @@ public:
     float        BDTSCORE_1; 
     float        BDTSCORE_2; 
 
+    bool         L1_4p5_HLT_4p0_;  
+    bool         L1_5p0_HLT_4p0_;  
+    bool         L1_5p5_HLT_4p0_;  
+    bool         L1_5p5_HLT_6p0_;  
+    bool         L1_6p0_HLT_4p0_;  
+    bool         L1_6p5_HLT_4p5_;  
+    bool         L1_7p0_HLT_5p0_;  
+    bool         L1_7p5_HLT_5p0_;  
+    bool         L1_8p0_HLT_5p0_;  
+    bool         L1_8p5_HLT_5p0_;  
+    bool         L1_8p5_HLT_5p5_;  
+    bool         L1_9p0_HLT_6p0_;  
+    bool         L1_10p5_HLT_5p0_;  
+    bool         L1_10p5_HLT_6p5_;  
+    bool         L1_11p0_HLT_6p5_;  
+
+    bool         trigger_OR_;
+
 
     TFile* outFile_=nullptr;
     TTree* outTree_=nullptr;

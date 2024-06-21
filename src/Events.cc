@@ -1,4 +1,5 @@
 #define Events_cxx
+#include "../include/json.hpp"
 #include "../include/Events.hh"
 #include <TH2.h>
 #include <TStyle.h>
@@ -44,6 +45,8 @@
 #include <sstream>
 #include <string>
 #include <thread>
+#include <stdlib.h>
+using json = nlohmann::json;
 
 Events::Events(TTree* tree) :
   EventsBase((TTree*)tree){
@@ -98,7 +101,9 @@ void Events::Loop(std::string outname, std::string outdir)
 //    fChain->GetEntry(jentry);       //read all branches
 //by  b_branchname->GetEntry(ientry); //read only this branch
    if (fChain == 0) return;
-   
+   std::ifstream f("/eos/user/j/jodedra/AnalysisWork_2024/BDTScoreadder_21_06_24/CMSSW_14_0_1/src/BDTscoreAdder/jsons/2022/merged2022.json");
+   json data = json::parse(f);
+   std::vector<std::string> triggers{"L1_10p5_HLT_5p0_Excl_Final", "L1_10p5_HLT_6p5_Excl_Final", "L1_11p0_HLT_6p5_Excl_Final", "L1_4p5_HLT_4p0_Excl_Final", "L1_5p0_HLT_4p0_Excl_Final", "L1_5p5_HLT_4p0_Excl_Final", "L1_5p5_HLT_6p0_Excl_Final", "L1_6p0_HLT_4p0_Excl_Final", "L1_6p5_HLT_4p5_Excl_Final", "L1_7p0_HLT_5p0_Excl_Final", "L1_7p5_HLT_5p0_Excl_Final", "L1_8p0_HLT_5p0_Excl_Final", "L1_8p5_HLT_5p0_Excl_Final", "L1_8p5_HLT_5p5_Excl_Final", "L1_9p0_HLT_6p0_Excl_Final"};
    Long64_t nentries = fChain->GetEntriesFast();
 
    Long64_t nbytes = 0, nb = 0;
@@ -170,6 +175,42 @@ void Events::Loop(std::string outname, std::string outdir)
         if(nSkimBToKEE_>999){
             continue;
         }
+        std::array<int,15> number = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+        for(int i=0;i<triggers.size();i++){
+            for (json::iterator it = data[std::string(triggers[i])].begin(); it != data[std::string(triggers[i])].end(); ++it) {
+                std::string runt = it.key();
+                if(runt==std::to_string(run_)){
+                  for (json::iterator it2 = data[std::string(triggers[i])][runt].begin(); it2 != data[std::string(triggers[i])][runt].end(); ++it2) {
+                    if(luminosityBlock_>=it2.value()[0]&&luminosityBlock_<=it2.value()[1]){
+                        //std::cout<<"reeeeeeooga"<<std::endl;
+                        number[i] = 1;
+                    }
+                  }
+                }
+            }
+        }
+
+        L1_4p5_HLT_4p0_ =  L1_DoubleEG4p5_er1p2_dR_Max0p9*HLT_DoubleEle4_eta1p22_mMax6*number[3]    ; 
+        L1_5p0_HLT_4p0_ =  L1_DoubleEG5_er1p2_dR_Max0p9*HLT_DoubleEle4_eta1p22_mMax6*number[4]    ; 
+        L1_5p5_HLT_4p0_ =  L1_DoubleEG5p5_er1p2_dR_Max0p8*HLT_DoubleEle4_eta1p22_mMax6*number[5]    ; 
+        L1_5p5_HLT_6p0_ =  L1_DoubleEG5p5_er1p2_dR_Max0p8*HLT_DoubleEle6_eta1p22_mMax6*number[6]    ; 
+        L1_6p0_HLT_4p0_ =  L1_DoubleEG6_er1p2_dR_Max0p8*HLT_DoubleEle4_eta1p22_mMax6*number[7]    ; 
+        L1_6p5_HLT_4p5_ =  L1_DoubleEG6p5_er1p2_dR_Max0p8*HLT_DoubleEle4p5_eta1p22_mMax6*number[8]    ; 
+        L1_7p0_HLT_5p0_ =  L1_DoubleEG7_er1p2_dR_Max0p8*HLT_DoubleEle5_eta1p22_mMax6*number[9]    ; 
+        L1_7p5_HLT_5p0_ =  L1_DoubleEG7p5_er1p2_dR_Max0p7*HLT_DoubleEle5_eta1p22_mMax6*number[10]    ; 
+        L1_8p0_HLT_5p0_ =  L1_DoubleEG8_er1p2_dR_Max0p7*HLT_DoubleEle5_eta1p22_mMax6*number[11]    ; 
+        L1_8p5_HLT_5p0_ =  L1_DoubleEG8p5_er1p2_dR_Max0p7*HLT_DoubleEle5_eta1p22_mMax6*number[12]    ; 
+        L1_8p5_HLT_5p5_ =  L1_DoubleEG8p5_er1p2_dR_Max0p7*HLT_DoubleEle5p5_eta1p22_mMax6*number[13]    ; 
+        L1_9p0_HLT_6p0_ =  L1_DoubleEG9_er1p2_dR_Max0p7*HLT_DoubleEle6_eta1p22_mMax6*number[14]    ; 
+        L1_10p5_HLT_5p0_ = L1_DoubleEG10p5_er1p2_dR_Max0p6*HLT_DoubleEle5_eta1p22_mMax6*number[0]     ;
+        L1_10p5_HLT_6p5_ = L1_DoubleEG10p5_er1p2_dR_Max0p6*HLT_DoubleEle6p5_eta1p22_mMax6*number[1]     ;
+        L1_11p0_HLT_6p5_ = L1_DoubleEG11_er1p2_dR_Max0p6*HLT_DoubleEle6p5_eta1p22_mMax6*number[2]     ;
+
+        trigger_OR_ = false;
+        if(L1_4p5_HLT_4p0_ || L1_5p0_HLT_4p0_ ||L1_5p5_HLT_4p0_ ||L1_5p5_HLT_6p0_ ||L1_6p0_HLT_4p0_ ||L1_6p5_HLT_4p5_ ||L1_7p0_HLT_5p0_ ||L1_7p5_HLT_5p0_ ||L1_8p0_HLT_5p0_ ||L1_8p5_HLT_5p0_ ||L1_8p5_HLT_5p5_ ||L1_9p0_HLT_6p0_ ||L1_10p5_HLT_5p0_||L1_10p5_HLT_6p5_||L1_11p0_HLT_6p5_){
+            trigger_OR_ = true;
+        }
+
       //std::cout<<run<<std::endl;
       for(int i=0;i<nSkimBToKEE_;i++){
          BToKEE_fit_pt_ = SkimBToKEE_fit_pt[i];
@@ -280,7 +321,7 @@ void Events::Loop(std::string outname, std::string outdir)
       
       //std::cout<<HLT_DoubleEle10_eta1p22_mMax6_<<std::endl;
       nb = fChain->GetEntry(jentry);   nbytes += nb;
-//      if(jentry>6000){
+//      if(jentry>60000){
 //        break;
 //      }
    }
@@ -326,6 +367,24 @@ void Events::Output(std::string outname, std::string outdir) {
    outTree_->Branch("L1_DoubleEG5_er1p2_dR_Max0p9", &L1_DoubleEG5_er1p2_dR_Max0p9_);
    outTree_->Branch("L1_DoubleEG4p5_er1p2_dR_Max0p9", &L1_DoubleEG4p5_er1p2_dR_Max0p9_);
    outTree_->Branch("L1_DoubleEG4_er1p2_dR_Max0p9", &L1_DoubleEG4_er1p2_dR_Max0p9_);
+
+   outTree_->Branch("L1_4p5_HLT_4p0",&L1_4p5_HLT_4p0_);
+   outTree_->Branch("L1_5p0_HLT_4p0",&L1_5p0_HLT_4p0_);
+   outTree_->Branch("L1_5p5_HLT_4p0",&L1_5p5_HLT_4p0_);
+   outTree_->Branch("L1_5p5_HLT_6p0",&L1_5p5_HLT_6p0_);
+   outTree_->Branch("L1_6p0_HLT_4p0",&L1_6p0_HLT_4p0_);
+   outTree_->Branch("L1_6p5_HLT_4p5",&L1_6p5_HLT_4p5_);
+   outTree_->Branch("L1_7p0_HLT_5p0",&L1_7p0_HLT_5p0_);
+   outTree_->Branch("L1_7p5_HLT_5p0",&L1_7p5_HLT_5p0_);
+   outTree_->Branch("L1_8p0_HLT_5p0",&L1_8p0_HLT_5p0_);
+   outTree_->Branch("L1_8p5_HLT_5p0",&L1_8p5_HLT_5p0_);
+   outTree_->Branch("L1_8p5_HLT_5p5",&L1_8p5_HLT_5p5_);
+   outTree_->Branch("L1_9p0_HLT_6p0",&L1_9p0_HLT_6p0_);
+   outTree_->Branch("L1_10p5_HLT_5p0",&L1_10p5_HLT_5p0_);
+   outTree_->Branch("L1_10p5_HLT_6p5",&L1_10p5_HLT_6p5_);
+   outTree_->Branch("L1_11p0_HLT_6p5",&L1_11p0_HLT_6p5_);
+   outTree_->Branch("trigger_OR",&trigger_OR_);
+
    outTree_->Branch("nTrigObj", &nTrigObj_);
    outTree_->Branch("nOtherPV", &nOtherPV_);
    outTree_->Branch("PV_ndof", &PV_ndof_);
@@ -460,6 +519,26 @@ void Events::initVars() {
     L1_DoubleEG5_er1p2_dR_Max0p9_ = false;
     L1_DoubleEG4p5_er1p2_dR_Max0p9_ = false;
     L1_DoubleEG4_er1p2_dR_Max0p9_ = false;
+
+
+
+    L1_4p5_HLT_4p0_ = false; 
+    L1_5p0_HLT_4p0_ = false; 
+    L1_5p5_HLT_4p0_ = false; 
+    L1_5p5_HLT_6p0_ = false; 
+    L1_6p0_HLT_4p0_ = false; 
+    L1_6p5_HLT_4p5_ = false; 
+    L1_7p0_HLT_5p0_ = false; 
+    L1_7p5_HLT_5p0_ = false; 
+    L1_8p0_HLT_5p0_ = false; 
+    L1_8p5_HLT_5p0_ = false; 
+    L1_8p5_HLT_5p5_ = false; 
+    L1_9p0_HLT_6p0_ = false; 
+    L1_10p5_HLT_5p0_ = false;
+    L1_10p5_HLT_6p5_ = false;
+    L1_11p0_HLT_6p5_ = false;
+    trigger_OR_ = false;
+
     nTrigObj_ = -1000;
     nOtherPV_ = -1000;
     PV_ndof_ = -1000;
