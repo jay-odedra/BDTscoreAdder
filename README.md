@@ -12,6 +12,7 @@ git clone git@github.com:guitargeek/FastForest.git
 build it
 ```
 cd FastForest
+git checkout e9697cd
 mkdir build
 cd build
 cmake3 ..
