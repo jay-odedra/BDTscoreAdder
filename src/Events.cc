@@ -113,7 +113,7 @@ void Events::Loop(std::string outname, std::string outdir)
    
    LoadBDT(bdt1,modellocation1,features1); 
 
-   int interval = 10000;
+   int interval = 1000;
    auto start = std::chrono::system_clock::now();
 
    for (Long64_t jentry=0; jentry<nentries;jentry++) {
@@ -155,6 +155,26 @@ void Events::Loop(std::string outname, std::string outdir)
         L1_DoubleEG5_er1p2_dR_Max0p9_ = L1_DoubleEG5_er1p2_dR_Max0p9 ;
         L1_DoubleEG4p5_er1p2_dR_Max0p9_ = L1_DoubleEG4p5_er1p2_dR_Max0p9 ;
         L1_DoubleEG4_er1p2_dR_Max0p9_ = L1_DoubleEG4_er1p2_dR_Max0p9 ;
+
+        L1_4p5_HLT_4p0_ =  L1_DoubleEG4p5_er1p2_dR_Max0p9_*HLT_DoubleEle4_eta1p22_mMax6_ ; 
+        L1_5p0_HLT_4p0_ =  L1_DoubleEG5_er1p2_dR_Max0p9_*HLT_DoubleEle4_eta1p22_mMax6_ ; 
+        L1_5p5_HLT_4p0_ =  L1_DoubleEG5p5_er1p2_dR_Max0p8_*HLT_DoubleEle4_eta1p22_mMax6_ ; 
+        L1_5p5_HLT_6p0_ =  L1_DoubleEG5p5_er1p2_dR_Max0p8_*HLT_DoubleEle6_eta1p22_mMax6_ ; 
+        L1_6p0_HLT_4p0_ =  L1_DoubleEG6_er1p2_dR_Max0p8_*HLT_DoubleEle4_eta1p22_mMax6_ ; 
+        L1_6p5_HLT_4p5_ =  L1_DoubleEG6p5_er1p2_dR_Max0p8_*HLT_DoubleEle4p5_eta1p22_mMax6_ ; 
+        L1_7p0_HLT_5p0_ =  L1_DoubleEG7_er1p2_dR_Max0p8_*HLT_DoubleEle5_eta1p22_mMax6_ ; 
+        L1_7p5_HLT_5p0_ =  L1_DoubleEG7p5_er1p2_dR_Max0p7_*HLT_DoubleEle5_eta1p22_mMax6_ ; 
+        L1_8p0_HLT_5p0_ =  L1_DoubleEG8_er1p2_dR_Max0p7_*HLT_DoubleEle5_eta1p22_mMax6_ ; 
+        L1_8p5_HLT_5p0_ =  L1_DoubleEG8p5_er1p2_dR_Max0p7_*HLT_DoubleEle5_eta1p22_mMax6_ ; 
+        L1_8p5_HLT_5p5_ =  L1_DoubleEG8p5_er1p2_dR_Max0p7_*HLT_DoubleEle5p5_eta1p22_mMax6_ ; 
+        L1_9p0_HLT_6p0_ =  L1_DoubleEG9_er1p2_dR_Max0p7_*HLT_DoubleEle6_eta1p22_mMax6_ ; 
+        L1_10p5_HLT_5p0_ = L1_DoubleEG10p5_er1p2_dR_Max0p6_*HLT_DoubleEle5_eta1p22_mMax6_  ;
+        L1_10p5_HLT_6p5_ = L1_DoubleEG10p5_er1p2_dR_Max0p6_*HLT_DoubleEle6p5_eta1p22_mMax6_  ;
+        L1_11p0_HLT_6p5_ = L1_DoubleEG11_er1p2_dR_Max0p6_*HLT_DoubleEle6p5_eta1p22_mMax6_  ;
+        trigger_OR_ = false;
+        if(L1_4p5_HLT_4p0_ || L1_5p0_HLT_4p0_ ||L1_5p5_HLT_4p0_ ||L1_5p5_HLT_6p0_ ||L1_6p0_HLT_4p0_ ||L1_6p5_HLT_4p5_ ||L1_7p0_HLT_5p0_ ||L1_7p5_HLT_5p0_ ||L1_8p0_HLT_5p0_ ||L1_8p5_HLT_5p0_ ||L1_8p5_HLT_5p5_ ||L1_9p0_HLT_6p0_ ||L1_10p5_HLT_5p0_||L1_10p5_HLT_6p5_||L1_11p0_HLT_6p5_){
+            trigger_OR_ = true;
+        }
         nTrigObj_ = nTrigObj ;
         nOtherPV_ = nOtherPV ;
         PV_ndof_ =   PV_ndof ;
@@ -171,7 +191,27 @@ void Events::Loop(std::string outname, std::string outdir)
             continue;
         }
       //std::cout<<run<<std::endl;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
       for(int i=0;i<nSkimBToKEE_;i++){
+         BToKEE_cand_idx_ = i;
          BToKEE_fit_pt_ = SkimBToKEE_fit_pt[i];
          BToKEE_fit_eta_ = SkimBToKEE_fit_eta[i];
          BToKEE_fit_phi_ = SkimBToKEE_fit_phi[i];
@@ -268,6 +308,38 @@ void Events::Loop(std::string outname, std::string outdir)
 //            initVars();
             goto end;
          }
+
+        for(int j=0;j<nGenPart;j++){
+
+            nGenPart_ = nGenPart;
+            GenPart_idx_ = j;
+            GenPart_genPartIdxMother_ = GenPart_genPartIdxMother[j];
+            GenPart_statusFlags_ = GenPart_statusFlags[j];
+            GenPart_pdgId_ = GenPart_pdgId[j];
+            GenPart_status_ = GenPart_status[j];
+            GenPart_eta_ = GenPart_eta[j];
+            GenPart_mass_ = GenPart_mass[j];
+            GenPart_phi_ = GenPart_phi[j];
+            GenPart_pt_ = GenPart_pt[j];
+            GenPart_vx_ = GenPart_vx[j];
+            GenPart_vy_ = GenPart_vy[j];
+            GenPart_vz_ = GenPart_vz[j];
+            Generator_id1_ = Generator_id1;
+            Generator_id2_ = Generator_id2;
+            Generator_binvar_ = Generator_binvar;
+            Generator_scalePDF_ = Generator_scalePDF;
+            Generator_weight_ = Generator_weight;
+            Generator_x1_ = Generator_x1;
+            Generator_x2_ = Generator_x2;
+            Generator_xpdf1_ = Generator_xpdf1;
+            Generator_xpdf2_ = Generator_xpdf2;
+            genWeight_ = genWeight;
+            nPSWeight_ = nPSWeight;
+            PSWeight_  = PSWeight[j];
+            outTree_->Fill();
+
+
+        }
          outTree_->Fill();
          end:;
   
@@ -280,7 +352,7 @@ void Events::Loop(std::string outname, std::string outdir)
       
       //std::cout<<HLT_DoubleEle10_eta1p22_mMax6_<<std::endl;
       nb = fChain->GetEntry(jentry);   nbytes += nb;
-//      if(jentry>6000){
+//      if(jentry>20){
 //        break;
 //      }
    }
@@ -326,6 +398,25 @@ void Events::Output(std::string outname, std::string outdir) {
    outTree_->Branch("L1_DoubleEG5_er1p2_dR_Max0p9", &L1_DoubleEG5_er1p2_dR_Max0p9_);
    outTree_->Branch("L1_DoubleEG4p5_er1p2_dR_Max0p9", &L1_DoubleEG4p5_er1p2_dR_Max0p9_);
    outTree_->Branch("L1_DoubleEG4_er1p2_dR_Max0p9", &L1_DoubleEG4_er1p2_dR_Max0p9_);
+
+
+   outTree_->Branch("L1_4p5_HLT_4p0",&L1_4p5_HLT_4p0_);
+   outTree_->Branch("L1_5p0_HLT_4p0",&L1_5p0_HLT_4p0_);
+   outTree_->Branch("L1_5p5_HLT_4p0",&L1_5p5_HLT_4p0_);
+   outTree_->Branch("L1_5p5_HLT_6p0",&L1_5p5_HLT_6p0_);
+   outTree_->Branch("L1_6p0_HLT_4p0",&L1_6p0_HLT_4p0_);
+   outTree_->Branch("L1_6p5_HLT_4p5",&L1_6p5_HLT_4p5_);
+   outTree_->Branch("L1_7p0_HLT_5p0",&L1_7p0_HLT_5p0_);
+   outTree_->Branch("L1_7p5_HLT_5p0",&L1_7p5_HLT_5p0_);
+   outTree_->Branch("L1_8p0_HLT_5p0",&L1_8p0_HLT_5p0_);
+   outTree_->Branch("L1_8p5_HLT_5p0",&L1_8p5_HLT_5p0_);
+   outTree_->Branch("L1_8p5_HLT_5p5",&L1_8p5_HLT_5p5_);
+   outTree_->Branch("L1_9p0_HLT_6p0",&L1_9p0_HLT_6p0_);
+   outTree_->Branch("L1_10p5_HLT_5p0",&L1_10p5_HLT_5p0_);
+   outTree_->Branch("L1_10p5_HLT_6p5",&L1_10p5_HLT_6p5_);
+   outTree_->Branch("L1_11p0_HLT_6p5",&L1_11p0_HLT_6p5_);
+   outTree_->Branch("trigger_OR",&trigger_OR_);
+
    outTree_->Branch("nTrigObj", &nTrigObj_);
    outTree_->Branch("nOtherPV", &nOtherPV_);
    outTree_->Branch("PV_ndof", &PV_ndof_);
@@ -339,8 +430,35 @@ void Events::Output(std::string outname, std::string outdir) {
    outTree_->Branch("nSV", &nSV_);
    outTree_->Branch("nSkimBToKEE", &nSkimBToKEE_);
 
+   
+   outTree_->Branch("nGenPart", &nGenPart_);
+   outTree_->Branch("GenPart_idx", &GenPart_idx_);
 
+   outTree_->Branch("GenPart_genPartIdxMother", &GenPart_genPartIdxMother_);
+   outTree_->Branch("GenPart_statusFlags", &GenPart_statusFlags_);
+   outTree_->Branch("GenPart_pdgId", &GenPart_pdgId_);
+   outTree_->Branch("GenPart_status", &GenPart_status_);
+   outTree_->Branch("GenPart_eta", &GenPart_eta_);
+   outTree_->Branch("GenPart_mass", &GenPart_mass_);
+   outTree_->Branch("GenPart_phi", &GenPart_phi_);
+   outTree_->Branch("GenPart_pt", &GenPart_pt_);
+   outTree_->Branch("GenPart_vx", &GenPart_vx_);
+   outTree_->Branch("GenPart_vy", &GenPart_vy_);
+   outTree_->Branch("GenPart_vz", &GenPart_vz_);
+   outTree_->Branch("Generator_id1", &Generator_id1_);
+   outTree_->Branch("Generator_id2", &Generator_id2_);
+   outTree_->Branch("Generator_binvar", &Generator_binvar_);
+   outTree_->Branch("Generator_scalePDF", &Generator_scalePDF_);
+   outTree_->Branch("Generator_weight", &Generator_weight_);
+   outTree_->Branch("Generator_x1", &Generator_x1_);
+   outTree_->Branch("Generator_x2", &Generator_x2_);
+   outTree_->Branch("Generator_xpdf1", &Generator_xpdf1_);
+   outTree_->Branch("Generator_xpdf2", &Generator_xpdf2_);
+   outTree_->Branch("genWeight", &genWeight_);
+   outTree_->Branch("nPSWeight", &nPSWeight_);
+   outTree_->Branch("PSWeight", &PSWeight_);
 
+   outTree_->Branch("BToKEE_cand_idx", &BToKEE_cand_idx_);  
    outTree_->Branch("BToKEE_fit_pt", &BToKEE_fit_pt_);
    outTree_->Branch("BToKEE_fit_eta", &BToKEE_fit_eta_);
    outTree_->Branch("BToKEE_fit_phi", &BToKEE_fit_phi_);
@@ -460,6 +578,28 @@ void Events::initVars() {
     L1_DoubleEG5_er1p2_dR_Max0p9_ = false;
     L1_DoubleEG4p5_er1p2_dR_Max0p9_ = false;
     L1_DoubleEG4_er1p2_dR_Max0p9_ = false;
+
+
+
+
+    L1_4p5_HLT_4p0_ = false;
+    L1_5p0_HLT_4p0_ = false;
+    L1_5p5_HLT_4p0_ = false;
+    L1_5p5_HLT_6p0_ = false;
+    L1_6p0_HLT_4p0_ = false;
+    L1_6p5_HLT_4p5_ = false;
+    L1_7p0_HLT_5p0_ = false;
+    L1_7p5_HLT_5p0_ = false;
+    L1_8p0_HLT_5p0_ = false;
+    L1_8p5_HLT_5p0_ = false;
+    L1_8p5_HLT_5p5_ = false;
+    L1_9p0_HLT_6p0_ = false;
+    L1_10p5_HLT_5p0_= false;
+    L1_10p5_HLT_6p5_= false;
+    L1_11p0_HLT_6p5_= false;
+    trigger_OR_     = false;
+
+
     nTrigObj_ = -1000;
     nOtherPV_ = -1000;
     PV_ndof_ = -1000;
@@ -472,6 +612,7 @@ void Events::initVars() {
     PV_npvsGood_ = -1000;
     nSV_ = -1000;
     nSkimBToKEE_ = -1000;
+    BToKEE_cand_idx_ = -1000;
     BToKEE_fit_pt_ = -1000.;
     BToKEE_fit_eta_ = -1000.;
     BToKEE_fit_phi_ = -1000.;
@@ -552,6 +693,35 @@ void Events::initVars() {
     BToKEE_p_assymetry_ = -1000.;             
     BDTSCORE_1 = -1000.; 
     BDTSCORE_2 = -1000.; 
+
+
+
+
+    nGenPart_ = -1000.;
+    GenPart_idx_= 1000;
+    GenPart_genPartIdxMother_ = -1000.;
+    GenPart_statusFlags_ = -1000.;
+    GenPart_pdgId_ = -1000.;
+    GenPart_status_ = -1000.;
+    GenPart_eta_ = -1000.;
+    GenPart_mass_ = -1000.;
+    GenPart_phi_ = -1000.;
+    GenPart_pt_ = -1000.;
+    GenPart_vx_ = -1000.;
+    GenPart_vy_ = -1000.;
+    GenPart_vz_ = -1000.;
+    Generator_id1_ = -1000.;
+    Generator_id2_ = -1000.;
+    Generator_binvar_ = -1000.;
+    Generator_scalePDF_ = -1000.;
+    Generator_weight_ = -1000.;
+    Generator_x1_ = -1000.;
+    Generator_x2_ = -1000.;
+    Generator_xpdf1_ = -1000.;
+    Generator_xpdf2_ = -1000.;
+    genWeight_ = -1000.;
+    nPSWeight_ = -1000.;
+    PSWeight_  = -1000.;
 
 }
 

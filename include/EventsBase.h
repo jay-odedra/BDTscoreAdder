@@ -28,6 +28,30 @@ public :
    UInt_t          bunchCrossing;
    UInt_t          nBToKEE;
    UInt_t          nElectron;
+   Int_t           nGenPart;
+   Short_t         GenPart_genPartIdxMother[2290];   //[nGenPart]
+   UShort_t        GenPart_statusFlags[2290];   //[nGenPart]
+   Int_t           GenPart_pdgId[2290];   //[nGenPart]
+   Int_t           GenPart_status[2290];   //[nGenPart]
+   Float_t         GenPart_eta[2290];   //[nGenPart]
+   Float_t         GenPart_mass[2290];   //[nGenPart]
+   Float_t         GenPart_phi[2290];   //[nGenPart]
+   Float_t         GenPart_pt[2290];   //[nGenPart]
+   Float_t         GenPart_vx[2290];   //[nGenPart]
+   Float_t         GenPart_vy[2290];   //[nGenPart]
+   Float_t         GenPart_vz[2290];   //[nGenPart]
+   Int_t           Generator_id1;
+   Int_t           Generator_id2;
+   Float_t         Generator_binvar;
+   Float_t         Generator_scalePDF;
+   Float_t         Generator_weight;
+   Float_t         Generator_x1;
+   Float_t         Generator_x2;
+   Float_t         Generator_xpdf1;
+   Float_t         Generator_xpdf2;
+   Float_t         genWeight;
+   Int_t           nPSWeight;
+   Float_t         PSWeight[1];   //[nPSWeight]
    UInt_t          nProbeTracks;
    UChar_t         HLT_DoubleEle10_eta1p22_mMax6;
    UChar_t         HLT_DoubleEle9p5_eta1p22_mMax6;
@@ -155,6 +179,30 @@ public :
    TBranch        *b_bunchCrossing;   //!
    TBranch        *b_nBToKEE;   //!
    TBranch        *b_nElectron;   //!
+   TBranch        *b_nGenPart;   //!
+   TBranch        *b_GenPart_genPartIdxMother;   //!
+   TBranch        *b_GenPart_statusFlags;   //!
+   TBranch        *b_GenPart_pdgId;   //!
+   TBranch        *b_GenPart_status;   //!
+   TBranch        *b_GenPart_eta;   //!
+   TBranch        *b_GenPart_mass;   //!
+   TBranch        *b_GenPart_phi;   //!
+   TBranch        *b_GenPart_pt;   //!
+   TBranch        *b_GenPart_vx;   //!
+   TBranch        *b_GenPart_vy;   //!
+   TBranch        *b_GenPart_vz;   //!
+   TBranch        *b_Generator_id1;   //!
+   TBranch        *b_Generator_id2;   //!
+   TBranch        *b_Generator_binvar;   //!
+   TBranch        *b_Generator_scalePDF;   //!
+   TBranch        *b_Generator_weight;   //!
+   TBranch        *b_Generator_x1;   //!
+   TBranch        *b_Generator_x2;   //!
+   TBranch        *b_Generator_xpdf1;   //!
+   TBranch        *b_Generator_xpdf2;   //!
+   TBranch        *b_genWeight;   //!
+   TBranch        *b_nPSWeight;   //!
+   TBranch        *b_PSWeight;   //!
    TBranch        *b_nProbeTracks;   //!
    TBranch        *b_HLT_DoubleEle10_eta1p22_mMax6;   //!
    TBranch        *b_HLT_DoubleEle9p5_eta1p22_mMax6;   //!
@@ -365,6 +413,30 @@ void EventsBase::Init(TTree *tree)
    fChain->SetBranchAddress("bunchCrossing", &bunchCrossing, &b_bunchCrossing);
    fChain->SetBranchAddress("nBToKEE", &nBToKEE, &b_nBToKEE);
    fChain->SetBranchAddress("nElectron", &nElectron, &b_nElectron);
+   fChain->SetBranchAddress("nGenPart", &nGenPart, &b_nGenPart);
+   fChain->SetBranchAddress("GenPart_genPartIdxMother", GenPart_genPartIdxMother, &b_GenPart_genPartIdxMother);
+   fChain->SetBranchAddress("GenPart_statusFlags", GenPart_statusFlags, &b_GenPart_statusFlags);
+   fChain->SetBranchAddress("GenPart_pdgId", GenPart_pdgId, &b_GenPart_pdgId);
+   fChain->SetBranchAddress("GenPart_status", GenPart_status, &b_GenPart_status);
+   fChain->SetBranchAddress("GenPart_eta", GenPart_eta, &b_GenPart_eta);
+   fChain->SetBranchAddress("GenPart_mass", GenPart_mass, &b_GenPart_mass);
+   fChain->SetBranchAddress("GenPart_phi", GenPart_phi, &b_GenPart_phi);
+   fChain->SetBranchAddress("GenPart_pt", GenPart_pt, &b_GenPart_pt);
+   fChain->SetBranchAddress("GenPart_vx", GenPart_vx, &b_GenPart_vx);
+   fChain->SetBranchAddress("GenPart_vy", GenPart_vy, &b_GenPart_vy);
+   fChain->SetBranchAddress("GenPart_vz", GenPart_vz, &b_GenPart_vz);
+   fChain->SetBranchAddress("Generator_id1", &Generator_id1, &b_Generator_id1);
+   fChain->SetBranchAddress("Generator_id2", &Generator_id2, &b_Generator_id2);
+   fChain->SetBranchAddress("Generator_binvar", &Generator_binvar, &b_Generator_binvar);
+   fChain->SetBranchAddress("Generator_scalePDF", &Generator_scalePDF, &b_Generator_scalePDF);
+   fChain->SetBranchAddress("Generator_weight", &Generator_weight, &b_Generator_weight);
+   fChain->SetBranchAddress("Generator_x1", &Generator_x1, &b_Generator_x1);
+   fChain->SetBranchAddress("Generator_x2", &Generator_x2, &b_Generator_x2);
+   fChain->SetBranchAddress("Generator_xpdf1", &Generator_xpdf1, &b_Generator_xpdf1);
+   fChain->SetBranchAddress("Generator_xpdf2", &Generator_xpdf2, &b_Generator_xpdf2);
+   fChain->SetBranchAddress("genWeight", &genWeight, &b_genWeight);
+   fChain->SetBranchAddress("nPSWeight", &nPSWeight, &b_nPSWeight);
+   fChain->SetBranchAddress("PSWeight", PSWeight, &b_PSWeight);
    fChain->SetBranchAddress("nProbeTracks", &nProbeTracks, &b_nProbeTracks);
    fChain->SetBranchAddress("HLT_DoubleEle10_eta1p22_mMax6", &HLT_DoubleEle10_eta1p22_mMax6, &b_HLT_DoubleEle10_eta1p22_mMax6);
    fChain->SetBranchAddress("HLT_DoubleEle9p5_eta1p22_mMax6", &HLT_DoubleEle9p5_eta1p22_mMax6, &b_HLT_DoubleEle9p5_eta1p22_mMax6);

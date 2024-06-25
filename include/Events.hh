@@ -23,6 +23,33 @@ public:
     int          bunchCrossing_;
     int          nBToKEE_;
     int          nElectron_;
+
+    int           nGenPart_;
+    int           GenPart_idx_;
+    int           GenPart_genPartIdxMother_;
+    int           GenPart_statusFlags_;
+    int           GenPart_pdgId_;
+    int           GenPart_status_;
+    float         GenPart_eta_;
+    float         GenPart_mass_;
+    float         GenPart_phi_;
+    float         GenPart_pt_;
+    float         GenPart_vx_;
+    float         GenPart_vy_;
+    float         GenPart_vz_;
+    int           Generator_id1_;
+    int           Generator_id2_;
+    float         Generator_binvar_;
+    float         Generator_scalePDF_;
+    float         Generator_weight_;
+    float         Generator_x1_;
+    float         Generator_x2_;
+    float         Generator_xpdf1_;
+    float         Generator_xpdf2_;
+    float         genWeight_;
+    int           nPSWeight_;
+    float         PSWeight_;  
+
     int          nProbeTracks_;
     bool         HLT_DoubleEle10_eta1p22_mMax6_;
     bool         HLT_DoubleEle9p5_eta1p22_mMax6_;
@@ -52,6 +79,26 @@ public:
     bool         L1_DoubleEG5_er1p2_dR_Max0p9_;
     bool         L1_DoubleEG4p5_er1p2_dR_Max0p9_;
     bool         L1_DoubleEG4_er1p2_dR_Max0p9_;
+
+    bool         L1_4p5_HLT_4p0_ ;
+    bool         L1_5p0_HLT_4p0_ ;
+    bool         L1_5p5_HLT_4p0_ ;
+    bool         L1_5p5_HLT_6p0_ ;
+    bool         L1_6p0_HLT_4p0_ ;
+    bool         L1_6p5_HLT_4p5_ ;
+    bool         L1_7p0_HLT_5p0_ ;
+    bool         L1_7p5_HLT_5p0_ ;
+    bool         L1_8p0_HLT_5p0_ ;
+    bool         L1_8p5_HLT_5p0_ ;
+    bool         L1_8p5_HLT_5p5_ ;
+    bool         L1_9p0_HLT_6p0_ ;
+    bool         L1_10p5_HLT_5p0_;
+    bool         L1_10p5_HLT_6p5_;
+    bool         L1_11p0_HLT_6p5_;
+    bool         trigger_OR_;
+
+
+
     int          nTrigObj_;
     int          nOtherPV_;
     float         PV_ndof_;
@@ -66,7 +113,7 @@ public:
     int          nSkimBToKEE_;
 
 
-      
+    int          BToKEE_cand_idx_;
     float        BToKEE_fit_pt_;
     float        BToKEE_fit_eta_;
     float        BToKEE_fit_phi_;
